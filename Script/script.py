@@ -2,9 +2,6 @@
 
 import sys
 import command_line as cl
-import math
-import Atome
-
 
 # faire un if argv = 2 (script.py --help),alors afficher help des commande
 # else le reste
