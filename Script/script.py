@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import sys
-import command_line as cl
+import commandline as cl
 import atom
 import intcalc
 

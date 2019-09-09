@@ -1,26 +1,27 @@
-==========CREATION D'UN PROGRAMME DE CALCULS D'INTERACTION INTRA PROTEIQUES==========
-Basé sur l'article : Tina, K. G., Bhadra, R., & Srinivasan, N. (2007). 
-		     PIC: Protein Interactions Calculator. Nucleic Acids Research, 
-		     35(Web Server), W473–W476.
-Contributeurs : Bertrand Bouvarel
+==========CREATION OF AN INTERACTION CALCULATION PROGRAM==========
+Based on the article : Tina, K. G., Bhadra, R., & Srinivasan, N. (2007). 
+		       PIC: Protein Interactions Calculator. Nucleic Acids Research, 
+		       35(Web Server), W473–W476.
+Contributor : Bertrand Bouvarel
 Promotion : M2BI 2019-2020
-Version de Python : Python 3.7.4
+Python version : Python 3.7.4
 
-Modules utilisés :
+Modules used :
 - sys
-
-A REDIGER
+- math
+- command_line (written by the contributor)
+- atom (written by the contributor)
+- intcalc (written by the contributor)
 
 
 ==========DESCRIPTION==========
 A REDIGER
 
 
-==========UTILISATION==========	
+==========USE==========
 A REDIGER
-Lancer le programme de la manière suivante
-dans le bash:
->>>>>>>>>> python3 script.py <<<<<<<<<<
+Run the program as follows in the bash:
+>>>>>>>>>> python ./Script/script.py ./PDB/file.pdb --arg1 --arg2 --argN <<<<<<<<<<
 
-S'affichera à la fin de l'éxecution:
+Will be displayed at the end of the execution:
 A REDIGER
