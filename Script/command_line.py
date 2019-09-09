@@ -12,8 +12,10 @@ def check_command(argv):
     if len(argv) < 2:
         return 1
     if argv[1][-4:] != ".pdb":
+        # use of a pdb file
         return 2
     if len(argv) == 2:
+        # no arguments for the interactions calculation
         return 3
 
 def set_val_default(arg_input, arg_name, def_range):
@@ -28,13 +30,12 @@ def set_val_default(arg_input, arg_name, def_range):
     """
     range = def_range
     if len(arg_input) > len(arg_name):
-        # while True:
         try:
+            # check if the value with the arg is a number and not a letter or a symbol
             float(arg_input[len(arg_name):])
             range = float(arg_input[len(arg_name):])
-            # break
         except ValueError:
-            print("The value of the argument", arg_name, "is invalid")
+            print("The value with the argument", arg_name, "is invalid")
             range = -1
     return range
 
