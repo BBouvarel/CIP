@@ -3,6 +3,7 @@
 import math
 import atom
 
+
 def calc_range(elem1, elem2):
     """
     function allowing the calculation of the distance of two atoms
@@ -10,8 +11,11 @@ def calc_range(elem1, elem2):
     :param elem1, elem2: two objects of the class atom
     :return: distance between two atoms
     """
-    dist = math.sqrt((elem2.get_x()-elem1.get_x())**2+(elem2.get_y()-elem1.get_y())**2+(elem2.get_z()-elem1.get_z())**2)
+    dist = math.sqrt((elem2.get_x()-elem1.get_x())**2+
+                     (elem2.get_y()-elem1.get_y())**2+
+                     (elem2.get_z()-elem1.get_z())**2)
     return dist
+
 
 def add_to_list(line, liste):
     """
@@ -24,6 +28,7 @@ def add_to_list(line, liste):
                            line[30:38].strip(), line[38:46].strip(),
                            line[46:54].strip()))
     return liste
+
 
 def parsing(pdb, name, res):
     """
@@ -44,7 +49,12 @@ def parsing(pdb, name, res):
                     if line[12:15].strip() in name and len(name) != 0:
                         # if the atom of the line is the desired atom
                         elements = add_to_list(line, elements)
+                elif len(res) == 0:
+                    if line[12:15].strip() in name and len(name) != 0:
+                        elements = add_to_list(line, elements)
+
     return elements
+
 
 def print_header():
     """
@@ -55,11 +65,28 @@ def print_header():
                                                               "Position", "Residue",
                                                               "Chain", "Distance"))
 
-def print_pos_res_ch_dis():
+
+def print_pos_res_ch_dis(pos1, res1, chain1, pos2, res2, chain2, dist):
     """
     function printing the the result's table
     """
-    print("{:^10}{:^10}{:^10}{:^10}{:^10}{:^10}{:^10}".format("Position",
-                                                              "Residue", "Chain",
-                                                              "Position", "Residue",
-                                                              "Chain", "Distance"))
+    print("{:^10}{:^10}{:^10}{:^10}{:^10}{:^10}{:^10.2f}"
+          .format(pos1, res1, chain1, pos2, res2, chain2, dist))
+
+
+def print_hydrogen_header():
+    """
+    function printing the head of the result's table
+    """
+    print("{:^10}{:^10}{:^10}{:^10}{:^10}"
+          "{:^10}{:^10}{:^10}{:^10}".format("Position", "Residue", "Chain",
+                                            "Atom", "Position", "Residue", "Chain",
+                                            "Atom", "Distance"))
+
+
+def print_hydrogen_res(posd, resd, chaind, named, posa, resa, chaina, namea, dist):
+    """
+    function printing the the result's table
+    """
+    print("{:^10}{:^10}{:^10}{:^10}{:^10}{:^10}{:^10}{:^10}{:^10.2f}"
+          .format(posd, resd, chaind, named, posa, resa, chaina, namea, dist))

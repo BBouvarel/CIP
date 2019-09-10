@@ -31,41 +31,34 @@ if __name__ == "__main__":
         if sys.argv[arg][0:6] == "--hphb":
             # calculation of hydrophobic interaction
             print("{:>45} {}A ".format("Hydrophobic interactions", def_range))
-            ic.print_results()
+            ic.print_header()
 
             hphb = ic.parsing(sys.argv[1], ["CB", "CD", "CE", "CG", "CH", "CZ", "NE", "OH", "SD"],
                               ["ALA", "VAL", "LEU", "ILE", "MET", "PHE", "TRP", "PRO", "TYR"])
-            pos_prec = []
+            pos_prev = []
             for i, elem1 in enumerate(hphb):
-                # check the pair of elements
                 for elem2 in hphb[i + 1:]:
+                    # check the pairs of elements
                     dist = ic.calc_range(elem1, elem2)
                     if dist <= def_range and\
-                            ([elem1.get_position(), elem2.get_position()] not in pos_prec) and\
+                            ([elem1.get_position(), elem2.get_position()] not in pos_prev) and\
                             (elem1.get_position() != elem2.get_position() or
                              elem1.get_chain() != elem2.get_chain()):
-                        #ic.print_pos_res_ch_dis(elem1.get_position(), elem1.get_residue(),
-                         #                        elem1.get_chain(), elem2.get_position(),
-                          #                       elem2.get_residue(), elem2.get_chain(), dist)
-                        print("{:^10}{:^10}{:^10}{:^10}{:^10}{:^10}"
-                              "{:^10.2f}".format(elem1.get_position(),
-                                                 elem1.get_residue(),
-                                                 elem1.get_chain(),
-                                                 elem2.get_position(),
-                                                 elem2.get_residue(),
-                                                 elem2.get_chain(),
-                                                 dist))
-                        pos_prec.append([elem1.get_position(), elem2.get_position()])
+                        ic.print_pos_res_ch_dis(elem1.get_position(), elem1.get_residue(),
+                                                elem1.get_chain(), elem2.get_position(),
+                                                elem2.get_residue(), elem2.get_chain(), dist)
+                        # print the results
+                        pos_prev.append([elem1.get_position(), elem2.get_position()])
             print("\n")
 
         elif sys.argv[arg][0:6] == "--inic":
             # calculation of ionic interaction
             print("{:>45} {}A ".format("Ionic interactions", def_range))
-            ic.print_results()
+            ic.print_header()
 
             inic = ic.parsing(sys.argv[1], ["ND", "NE", "NH", "NZ", "OD", "OE"],
                               ["ARG", "LYS", "HIS", "ASP", "GLU"])
-            pos_prec = []
+            pos_prev = []
             pos_res = ["ARG", "LYS", "HIS"]
             neg_res = ["ASP", "GLU"]
             for i, elem1 in enumerate(inic):
@@ -73,20 +66,16 @@ if __name__ == "__main__":
                 for elem2 in inic[i + 1:]:
                     dist = ic.calc_range(elem1, elem2)
                     if dist <= def_range and\
-                            ([elem1.get_position(), elem2.get_position()] not in pos_prec) and\
+                            ([elem1.get_position(), elem2.get_position()] not in pos_prev) and\
                             (elem1.get_position() != elem2.get_position() or
                              elem1.get_chain() != elem2.get_chain()):
                         if (elem1.get_residue() in pos_res and elem2.get_residue() in neg_res) or\
                                 (elem1.get_residue() in neg_res and elem2.get_residue() in pos_res):
-                            print("{:^10}{:^10}{:^10}{:^10}{:^10}{:^10}"
-                                  "{:^10.2f}".format(elem1.get_position(),
-                                                     elem1.get_residue(),
-                                                     elem1.get_chain(),
-                                                     elem2.get_position(),
-                                                     elem2.get_residue(),
-                                                     elem2.get_chain(),
-                                                     dist))
-                            pos_prec.append([elem1.get_position(), elem2.get_position()])
+                            # binding of a positive res with a negative res only
+                            ic.print_pos_res_ch_dis(elem1.get_position(), elem1.get_residue(),
+                                                    elem1.get_chain(), elem2.get_position(),
+                                                    elem2.get_residue(), elem2.get_chain(), dist)
+                            pos_prev.append([elem1.get_position(), elem2.get_position()])
             print("\n")
 
         elif sys.argv[arg][0:6] == "--arar":
@@ -104,7 +93,7 @@ if __name__ == "__main__":
         elif sys.argv[arg][0:6] == "--disu":
             # calculation of disulphide bridges
             print("{:^70}".format("Disulphide bridges 2.2A"))
-            ic.print_results()
+            ic.print_header()
 
             sulphur = ic.parsing(sys.argv[1], ["SG"], ["CYS"])
             for i, elem1 in enumerate(sulphur):
@@ -112,19 +101,39 @@ if __name__ == "__main__":
                 for elem2 in sulphur[i+1:]:
                     dist = ic.calc_range(elem1, elem2)
                     if dist <= 2.2:
-                        print("{:^10}{:^10}{:^10}{:^10}{:^10}{:^10}"
-                              "{:^10.2f}".format(elem1.get_position(),
-                                                 elem1.get_residue(),
-                                                 elem1.get_chain(),
-                                                 elem2.get_position(),
-                                                 elem2.get_residue(),
-                                                 elem2.get_chain(),
-                                                 dist))
+                        ic.print_pos_res_ch_dis(elem1.get_position(), elem1.get_residue(),
+                                                elem1.get_chain(), elem2.get_position(),
+                                                elem2.get_residue(), elem2.get_chain(), dist)
             print("\n")
 
         elif sys.argv[arg][0:6] == "--mmhb":
-            # Lancer calcul interac hydrogen main chain - main chain
-            print("mmhb")
+            # calculation of hydrogen bonds main-main
+            print("{:^90}\n{:^40}{:^40}".format("Hydrogen bonds", "Donnor", "Acceptor"))
+            ic.print_hydrogen_header()
+
+            pos_prev = []
+            mmhb = ic.parsing(sys.argv[1], ["N", "O"], [])
+            for i, elem1 in enumerate(mmhb):
+                for elem2 in mmhb[i + 1:]:
+                    if elem1.get_name() == "N" and elem2.get_name() == "O":
+                        donor = elem1
+                        acceptor = elem2
+                    elif elem1.get_name() == "O" and elem2.get_name() == "N":
+                        donor = elem2
+                        acceptor = elem1
+                    dist = ic.calc_range(donor, acceptor)
+                    if dist <= 3.5 and \
+                            ([donor.get_position(), acceptor.get_position()] not in pos_prev) and \
+                            (donor.get_position() != acceptor.get_position() or
+                             donor.get_chain() != acceptor.get_chain()) and\
+                            abs(donor.get_position() - acceptor.get_position()) >= 2 and\
+                            donor.get_residue() != "PRO":
+                        ic.print_hydrogen_res(donor.get_position(), donor.get_residue(),
+                                              donor.get_chain(), donor.get_name(),
+                                              acceptor.get_position(), acceptor.get_residue(),
+                                              acceptor.get_chain(), acceptor.get_name(), dist)
+                        pos_prev.append([donor.get_position(), acceptor.get_position()])
+            print("\n")
 
         elif sys.argv[arg][0:6] == "--mshb":
             # Lancer calcul interac hydrogen main chain - side chain

@@ -67,6 +67,5 @@ def check_help(argv):
               "--disu  ->  Run the calculation of disulphide bridges.\n\n"
               "--mmhb  ->  Run the calculation of main chain-main chain hydrogen bond.\n\n"
               "--mshb  ->  Run the calculation of main chain-side chain hydrogen bond.\n\n"
-              "--sshb  ->  Run the calculation of side chain-side chain hydrogen bond.\n\n"
-              )
+              "--sshb  ->  Run the calculation of side chain-side chain hydrogen bond.\n\n")
         return True
