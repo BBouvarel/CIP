@@ -3,53 +3,63 @@
 import math
 import atom
 
-
-def calc_range3D(elem1, elem2):
+def calc_range(elem1, elem2):
     """
-    function allowing the calculation of the distance in three dimensions of two atoms
+    function allowing the calculation of the distance of two atoms
 
-    param elem1, elem2: two objects of the class atom
-    return: distance between two atoms
+    :param elem1, elem2: two objects of the class atom
+    :return: distance between two atoms
     """
-    dist = math.sqrt((elem2.x-elem1.x)**2+(elem2.y-elem1.y)**2+(elem2.z-elem1.z)**2)
+    dist = math.sqrt((elem2.get_x()-elem1.get_x())**2+(elem2.get_y()-elem1.get_y())**2+(elem2.get_z()-elem1.get_z())**2)
     return dist
 
 def add_to_list(line, liste):
-    liste.append(atom.Atom(line[12:15].strip(), line[76:78].strip(),
-                              line[22:26].strip(), line[17:20].strip(),
-                              line[21:22].strip(), line[30:38].strip(),
-                              line[38:46].strip(), line[46:54].strip()))
+    """
+    :param line: line of the pdb file containing the element of interest
+    :param liste: list containing the objects of class atom
+    :return: list of objects of class atom with the new element added
+    """
+    liste.append(atom.Atom(line[12:15].strip(), line[22:26].strip(),
+                           line[17:20].strip(), line[21:22].strip(),
+                           line[30:38].strip(), line[38:46].strip(),
+                           line[46:54].strip()))
     return liste
 
-def parsing(pdb, name, res, symbol):
+def parsing(pdb, name, res):
     """
     function allowing the parsing of the pdb file following certain conditions
 
-    param pdb: the pdb file given by the user
-          name: atom name
-          res: list of residues containing the element
-          symbol: list of elements symbols
-    return: list of objects of class atom that respect the conditions
+    :param pdb: the pdb file given by the user
+    :param name: atom name
+    :param res: list of residues containing the element
+    :return: list of objects of class atom that respect the conditions
     """
     elements = []
-    #if len(name) == 0 : continue
-    #if len(res) == 0: res = [""]
-    #if len(symbol) == 0: symbol = ["C", "O", "N", "S"]
-
-    # juste mettre if des conditions l'un apres l autre avec and len(liste) != 0
-
-    # if len res symbl ou autre =0 alors on initialise ces liste avec toutes les possibilités
     with open(pdb, "r") as finput:
         for line in finput:
             if line[0:6].strip() == "ATOM":
+                # if the line describe an atom
                 if line[17:20].strip() in res and len(res) != 0:
-                    if line[76:78].strip() in symbol and len(symbol) != 0:
+                    # if the residue of the line contain this specific atom
+                    if line[12:15].strip() in name and len(name) != 0:
+                        # if the atom of the line is the desired atom
                         elements = add_to_list(line, elements)
-                    elif line[12:15].strip() in name and len(name) != 0:
-                        # if no restriction on the element's symbol
-                        elements = add_to_list(line, elements)
-                            #elements.append(atom.Atom(line[12:16].strip(), line[76:78].strip(),
-                                                      #line[22:26].strip(), line[17:20].strip(),
-                                                      #line[21:22].strip(), line[30:38].strip(),
-                                                      #line[38:46].strip(), line[46:54].strip()))
     return elements
+
+def print_header():
+    """
+    function printing the head of the result's table
+    """
+    print("{:^10}{:^10}{:^10}{:^10}{:^10}{:^10}{:^10}".format("Position",
+                                                              "Residue", "Chain",
+                                                              "Position", "Residue",
+                                                              "Chain", "Distance"))
+
+def print_pos_res_ch_dis():
+    """
+    function printing the the result's table
+    """
+    print("{:^10}{:^10}{:^10}{:^10}{:^10}{:^10}{:^10}".format("Position",
+                                                              "Residue", "Chain",
+                                                              "Position", "Residue",
+                                                              "Chain", "Distance"))
