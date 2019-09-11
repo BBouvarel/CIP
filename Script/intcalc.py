@@ -11,9 +11,9 @@ def calc_range(elem1, elem2):
     :param elem1, elem2: two objects of the class atom
     :return: distance between two atoms
     """
-    dist = math.sqrt((elem2.get_x()-elem1.get_x())**2+
-                     (elem2.get_y()-elem1.get_y())**2+
-                     (elem2.get_z()-elem1.get_z())**2)
+    dist = math.sqrt((elem2.x-elem1.x)**2+
+                     (elem2.y-elem1.y)**2+
+                     (elem2.z-elem1.z)**2)
     return dist
 
 
@@ -54,6 +54,10 @@ def parsing(pdb, name, res):
                         elements = add_to_list(line, elements)
 
     return elements
+
+
+def calc_centroid():
+    pass
 
 
 def print_header():

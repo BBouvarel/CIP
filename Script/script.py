@@ -41,14 +41,14 @@ if __name__ == "__main__":
                     # check the pairs of elements
                     dist = ic.calc_range(elem1, elem2)
                     if dist <= def_range and\
-                            ([elem1.get_position(), elem2.get_position()] not in pos_prev) and\
-                            (elem1.get_position() != elem2.get_position() or
-                             elem1.get_chain() != elem2.get_chain()):
-                        ic.print_pos_res_ch_dis(elem1.get_position(), elem1.get_residue(),
-                                                elem1.get_chain(), elem2.get_position(),
-                                                elem2.get_residue(), elem2.get_chain(), dist)
+                            ([elem1.position, elem2.position] not in pos_prev) and\
+                            (elem1.position != elem2.position or
+                             elem1.chain != elem2.chain):
+                        ic.print_pos_res_ch_dis(elem1.position, elem1.residue,
+                                                elem1.chain, elem2.position,
+                                                elem2.residue, elem2.chain, dist)
                         # print the results
-                        pos_prev.append([elem1.get_position(), elem2.get_position()])
+                        pos_prev.append([elem1.position, elem2.position])
             print("\n")
 
         elif sys.argv[arg][0:6] == "--inic":
@@ -66,16 +66,16 @@ if __name__ == "__main__":
                 for elem2 in inic[i + 1:]:
                     dist = ic.calc_range(elem1, elem2)
                     if dist <= def_range and\
-                            ([elem1.get_position(), elem2.get_position()] not in pos_prev) and\
-                            (elem1.get_position() != elem2.get_position() or
-                             elem1.get_chain() != elem2.get_chain()):
-                        if (elem1.get_residue() in pos_res and elem2.get_residue() in neg_res) or\
-                                (elem1.get_residue() in neg_res and elem2.get_residue() in pos_res):
+                            ([elem1.position, elem2.position] not in pos_prev) and\
+                            (elem1.position != elem2.position or
+                             elem1.chain != elem2.chain):
+                        if (elem1.residue in pos_res and elem2.residue in neg_res) or\
+                                (elem1.residue in neg_res and elem2.residue in pos_res):
                             # binding of a positive res with a negative res only
-                            ic.print_pos_res_ch_dis(elem1.get_position(), elem1.get_residue(),
-                                                    elem1.get_chain(), elem2.get_position(),
-                                                    elem2.get_residue(), elem2.get_chain(), dist)
-                            pos_prev.append([elem1.get_position(), elem2.get_position()])
+                            ic.print_pos_res_ch_dis(elem1.position, elem1.residue,
+                                                    elem1.chain, elem2.position,
+                                                    elem2.residue, elem2.chain, dist)
+                            pos_prev.append([elem1.position, elem2.position])
             print("\n")
 
         elif sys.argv[arg][0:6] == "--arar":
@@ -101,9 +101,9 @@ if __name__ == "__main__":
                 for elem2 in sulphur[i+1:]:
                     dist = ic.calc_range(elem1, elem2)
                     if dist <= 2.2:
-                        ic.print_pos_res_ch_dis(elem1.get_position(), elem1.get_residue(),
-                                                elem1.get_chain(), elem2.get_position(),
-                                                elem2.get_residue(), elem2.get_chain(), dist)
+                        ic.print_pos_res_ch_dis(elem1.position, elem1.residue,
+                                                elem1.chain, elem2.position,
+                                                elem2.residue, elem2.chain, dist)
             print("\n")
 
         elif sys.argv[arg][0:6] == "--mmhb":
@@ -115,24 +115,24 @@ if __name__ == "__main__":
             mmhb = ic.parsing(sys.argv[1], ["N", "O"], [])
             for i, elem1 in enumerate(mmhb):
                 for elem2 in mmhb[i + 1:]:
-                    if elem1.get_name() == "N" and elem2.get_name() == "O":
+                    if elem1.name == "N" and elem2.name == "O":
                         donor = elem1
                         acceptor = elem2
-                    elif elem1.get_name() == "O" and elem2.get_name() == "N":
+                    elif elem1.name == "O" and elem2.name == "N":
                         donor = elem2
                         acceptor = elem1
                     dist = ic.calc_range(donor, acceptor)
                     if dist <= 3.5 and \
-                            ([donor.get_position(), acceptor.get_position()] not in pos_prev) and \
-                            (donor.get_position() != acceptor.get_position() or
-                             donor.get_chain() != acceptor.get_chain()) and\
-                            abs(donor.get_position() - acceptor.get_position()) >= 2 and\
-                            donor.get_residue() != "PRO":
-                        ic.print_hydrogen_res(donor.get_position(), donor.get_residue(),
-                                              donor.get_chain(), donor.get_name(),
-                                              acceptor.get_position(), acceptor.get_residue(),
-                                              acceptor.get_chain(), acceptor.get_name(), dist)
-                        pos_prev.append([donor.get_position(), acceptor.get_position()])
+                            ([donor.position, acceptor.position] not in pos_prev) and \
+                            (donor.position != acceptor.position or
+                             donor.chain != acceptor.chain) and\
+                            abs(donor.position - acceptor.position) >= 2 and\
+                            donor.residue != "PRO":
+                        ic.print_hydrogen_res(donor.position, donor.residue,
+                                              donor.chain, donor.name,
+                                              acceptor.position, acceptor.residue,
+                                              acceptor.chain, acceptor.name, dist)
+                        pos_prev.append([donor.position, acceptor.position])
             print("\n")
 
         elif sys.argv[arg][0:6] == "--mshb":
