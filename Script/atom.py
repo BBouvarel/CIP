@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+
 class Atom:
     """
     class representing the atoms and some of their characteristics contained in a pdb file

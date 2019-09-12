@@ -28,6 +28,7 @@ if __name__ == "__main__":
             if def_range == -1:
                 sys.exit()
 
+        # LANE DOUBLE BOUCLE PUIS FI CHECK LA COMMANDE QUI PERMET DE LANCER LA FONC DE L'INTERAC QUI CORRESPOND AVEC LES PRINT DANS LA FONCTION
         if sys.argv[arg][0:6] == "--hphb":
             # calculation of hydrophobic interaction
             print("{:>45} {}A ".format("Hydrophobic interactions", def_range))
@@ -40,8 +41,8 @@ if __name__ == "__main__":
                 for elem2 in hphb[i + 1:]:
                     # check the pairs of elements
                     dist = ic.calc_range(elem1, elem2)
-                    if dist <= def_range and\
-                            ([elem1.position, elem2.position] not in pos_prev) and\
+                    if dist <= def_range and \
+                            ([elem1.position, elem2.position] not in pos_prev) and \
                             (elem1.position != elem2.position or
                              elem1.chain != elem2.chain):
                         ic.print_pos_res_ch_dis(elem1.position, elem1.residue,
@@ -65,11 +66,11 @@ if __name__ == "__main__":
                 # check the pair of elements
                 for elem2 in inic[i + 1:]:
                     dist = ic.calc_range(elem1, elem2)
-                    if dist <= def_range and\
-                            ([elem1.position, elem2.position] not in pos_prev) and\
+                    if dist <= def_range and \
+                            ([elem1.position, elem2.position] not in pos_prev) and \
                             (elem1.position != elem2.position or
                              elem1.chain != elem2.chain):
-                        if (elem1.residue in pos_res and elem2.residue in neg_res) or\
+                        if (elem1.residue in pos_res and elem2.residue in neg_res) or \
                                 (elem1.residue in neg_res and elem2.residue in pos_res):
                             # binding of a positive res with a negative res only
                             ic.print_pos_res_ch_dis(elem1.position, elem1.residue,
@@ -98,7 +99,7 @@ if __name__ == "__main__":
             sulphur = ic.parsing(sys.argv[1], ["SG"], ["CYS"])
             for i, elem1 in enumerate(sulphur):
                 # check the pair of sulphur
-                for elem2 in sulphur[i+1:]:
+                for elem2 in sulphur[i + 1:]:
                     dist = ic.calc_range(elem1, elem2)
                     if dist <= 2.2:
                         ic.print_pos_res_ch_dis(elem1.position, elem1.residue,
@@ -108,7 +109,88 @@ if __name__ == "__main__":
 
         elif sys.argv[arg][0:6] == "--mmhb":
             # calculation of hydrogen bonds main-main
-            print("{:^90}\n{:^40}{:^40}".format("Hydrogen bonds", "Donnor", "Acceptor"))
+            print("{:^90}\n{:^40}{:^40}".format("Hydrogen bonds main-main", "Donnor", "Acceptor"))
+            ic.print_hydrogen_header()
+
+            pos_prev = []
+            mmhb = ic.parsing(sys.argv[1], ["N", "O"], [])
+            for i, elem1 in enumerate(mmhb):
+                for elem2 in mmhb[i + 1:]:
+                    if elem1.name == "N" and elem2.name == "O":
+                        donor = elem1
+                        acceptor = elem2
+                    else:
+                        donor = elem2
+                        acceptor = elem1
+                    dist = ic.calc_range(donor, acceptor)
+                    if dist <= 3.5 and \
+                            ([donor.position, acceptor.position] not in pos_prev) and \
+                            (donor.position != acceptor.position or
+                             donor.chain != acceptor.chain) and \
+                            abs(donor.position - acceptor.position) >= 2 and \
+                            donor.residue != "PRO":
+                        ic.print_hydrogen_res(donor.position, donor.residue,
+                                              donor.chain, donor.name,
+                                              acceptor.position, acceptor.residue,
+                                              acceptor.chain, acceptor.name, dist)
+                        pos_prev.append([donor.position, acceptor.position])
+            print("\n")
+
+        elif sys.argv[arg][0:6] == "--mshb":
+            # calculation of hydrogen bonds main-side
+            print("{:^90}\n{:^40}{:^40}".format("Hydrogen bonds side-main", "Donor", "Acceptor"))
+            ic.print_hydrogen_header()
+
+            main = ["N", "O", "OXT"]
+            side = ["OD", "OE", "OG", "OH", "ND", "NE", "NH", "NZ", "SG"]
+            pos_prev = []
+            donor = None
+            acceptor = None
+            do_ac = [(None, None)]
+            mshb = ic.parsing(sys.argv[1], main + side, [])
+            print(len(mshb))
+
+            for i, elem1 in enumerate(mshb):
+                for elem2 in mshb[i + 1:]:
+                    def_range = 3.5
+
+                    if (elem1.name in main and elem2.name in side):
+                        if elem1.name == "N":
+                            donor = elem1
+                            acceptor = elem2
+                        else:
+                            donor = elem2
+                            acceptor = elem1
+                        if elem2.name == "SG":
+                            def_range = 4
+                    elif (elem1.name in side and elem2.name in main):
+                        if elem2.name == "N":
+                            donor = elem2
+                            acceptor = elem1
+                        else:
+                            donor = elem1
+                            acceptor = elem2
+                        if elem1.name == "SG":
+                            def_range = 4
+                    if donor is not None and acceptor is not None and (donor, acceptor) not in do_ac:
+                        dist = ic.calc_range(donor, acceptor)
+                        if dist <= def_range and \
+                                ([donor.position, acceptor.position] not in pos_prev or donor.name != acceptor.name) and \
+                                (donor.position != acceptor.position or
+                                 donor.chain != acceptor.chain or
+                                 donor.name != acceptor.name) and \
+                                abs(donor.position - acceptor.position) >= 2:
+                            ic.print_hydrogen_res(donor.position, donor.residue,
+                                                  donor.chain, donor.name,
+                                                  acceptor.position, acceptor.residue,
+                                                  acceptor.chain, acceptor.name, dist)
+                            pos_prev.append([donor.position, acceptor.position])
+                        do_ac.append((donor, acceptor))
+            print("\n")
+
+        elif sys.argv[arg][0:6] == "--sshb":
+            # calculation of hydrogen bonds side-side
+            print("{:^90}\n{:^40}{:^40}".format("Hydrogen bonds side-side", "Donnor", "Acceptor"))
             ic.print_hydrogen_header()
 
             pos_prev = []
@@ -125,8 +207,8 @@ if __name__ == "__main__":
                     if dist <= 3.5 and \
                             ([donor.position, acceptor.position] not in pos_prev) and \
                             (donor.position != acceptor.position or
-                             donor.chain != acceptor.chain) and\
-                            abs(donor.position - acceptor.position) >= 2 and\
+                             donor.chain != acceptor.chain) and \
+                            abs(donor.position - acceptor.position) >= 2 and \
                             donor.residue != "PRO":
                         ic.print_hydrogen_res(donor.position, donor.residue,
                                               donor.chain, donor.name,
@@ -134,14 +216,6 @@ if __name__ == "__main__":
                                               acceptor.chain, acceptor.name, dist)
                         pos_prev.append([donor.position, acceptor.position])
             print("\n")
-
-        elif sys.argv[arg][0:6] == "--mshb":
-            # Lancer calcul interac hydrogen main chain - side chain
-            print("mshb")
-
-        elif sys.argv[arg][0:6] == "--sshb":
-            # Lancer calcul interac hydrogen side chain - side chain
-            print("sshb")
 
         else:
             sys.exit("L'un des arguments n'est pas reconnu par le programme")
