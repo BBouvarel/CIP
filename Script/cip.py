@@ -37,7 +37,8 @@ if __name__ == "__main__":
             print("{:>45} {}A ".format("Hydrophobic interactions", def_range))
             ic.print_header()
 
-            hphb = ic.parsing(sys.argv[1], ["CB", "CD", "CE", "CG", "CH", "CZ", "NE", "OH", "SD"],
+            hphb = ic.parsing(sys.argv[1], ["CB", "CD", "CD1", "CD2", "CE", "CE1", "CE2", "CE3",
+                                            "CG", "CG1", "CG2", "CH2", "CZ", "CZ2", "CZ3", "NE1", "SD"],
                               ["ALA", "VAL", "LEU", "ILE", "MET", "PHE", "TRP", "PRO", "TYR"])
             pos_prev = []
             for i, elem1 in enumerate(hphb):
@@ -60,8 +61,12 @@ if __name__ == "__main__":
             print("{:>45} {}A ".format("Ionic interactions", def_range))
             ic.print_header()
 
-            inic = ic.parsing(sys.argv[1], ["ND", "NE", "NH", "NZ", "OD", "OE"],
+            inic = ic.parsing(sys.argv[1], ["ND1", "NH2", "NZ", "OD2", "OE2"],
                               ["ARG", "LYS", "HIS", "ASP", "GLU"])
+
+
+            # ND1, NH2, NZ, OE2, OD2
+            # "ND1", "ND2", "NH1", "NH2", "NZ", "OD1", "OD2", "OE1", "OE2"
             pos_prev = []
             pos_res = ["ARG", "LYS", "HIS"]
             neg_res = ["ASP", "GLU"]
