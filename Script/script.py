@@ -4,8 +4,8 @@ __author__ = "Bertrand Bouvarel"
 __date__ = "2019/09"
 
 import sys
-import commandline as cl
-import intcalc as ic
+import Packages.commandline as cl
+import Packages.intcalc as ic
 
 if __name__ == "__main__":
     # check if the help is called

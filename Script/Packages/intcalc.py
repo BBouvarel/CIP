@@ -3,7 +3,7 @@
 
 import math
 import statistics as stat
-import atom
+import Packages.atom as atom
 
 
 def calc_range(elem1, elem2):
