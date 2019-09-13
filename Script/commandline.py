@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+
 def check_command(argv):
     """
     function to detect errors in the command line
@@ -16,6 +17,7 @@ def check_command(argv):
         # no arguments for the interactions calculation
         return 3
 
+
 def set_val_default(arg_input, arg_name, def_range):
     """
     function to assign a threshold distance value used by some calculation of interactions
@@ -28,14 +30,30 @@ def set_val_default(arg_input, arg_name, def_range):
     """
     range = def_range
     if len(arg_input) > len(arg_name):
-        try:
-            # check if the value with the arg is a number and not a letter or a symbol
-            float(arg_input[len(arg_name):])
-            range = float(arg_input[len(arg_name):])
-        except ValueError:
-            print("The value with the argument", arg_name, "is invalid")
-            range = -1
+        if arg_name == "--arar":
+            try:
+                # check if the two values are numbers and not a letters or a symbols
+                val1 = arg_input[len(arg_name):].split("/")[0]
+                val2 = arg_input[len(arg_name):].split("/")[1]
+                if val1 >= val2:
+                    range = -1
+                    print("The values with the argument", arg_name,
+                          "are invalid, please leave a positive gap between the two values")
+                else:
+                    range = (float(val1), float(val2))
+            except ValueError:
+                print("The values with the argument", arg_name, "are invalid")
+                range = -1
+        else:
+            try:
+                # check if the value with the arg is a number and not a letter or a symbol
+                #float(arg_input[len(arg_name):])
+                range = float(arg_input[len(arg_name):])
+            except ValueError:
+                print("The value with the argument", arg_name, "is invalid")
+                range = -1
     return range
+
 
 def check_help(argv):
     """
@@ -56,8 +74,8 @@ def check_help(argv):
               "            --inicVALUE Give a specific distance value.\n"
               "            (ex: --inic1.0 , default value: 6A).\n\n"
               "--arar  ->  Run the calculation of aromatic-aromatic interactions.\n"
-              "            --ararVALUE Give a specific distance value.\n"
-              "            (ex: --arar1.0 , default value: 4.5A).\n\n"
+              "            --ararVALUE1/VALUE2 Give a specific distance interval.\n"
+              "            (ex: --arar1.0/5.0 , default value: 4.5A to 7A).\n\n"
               "--arsu  ->  Run the calculation of aromatic-sulphur interactions.\n"
               "            --arsuVALUE Give a specific distance value.\n"
               "            (ex: --arsu1.0 , default value: 5.3A).\n\n"

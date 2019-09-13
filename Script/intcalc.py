@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
+
 import math
+import statistics as stat
 import atom
 
 
@@ -52,12 +54,20 @@ def parsing(pdb, name, res):
                 elif len(res) == 0:
                     if line[12:16].strip() in name and len(name) != 0:
                         elements = add_to_list(line, elements)
-
     return elements
 
 
-def calc_centroid():
-    pass
+def calc_centroid(atoms):
+    """
+    function calculating the centroid of a phenyl group of an aromatic residue
+
+    :param atoms: a list of objects of the atom class corresponding to the six atoms of a phenyl
+    :return: an object containing the information about the phenyl and his centroid
+    """
+    return atom.Atom("Phenyl", atoms[0].position, atoms[0].residue, atoms[0].chain,
+                     stat.mean([atoms[0].x, atoms[1].x, atoms[2].x, atoms[3].x, atoms[4].x, atoms[5].x]),
+                     stat.mean([atoms[0].y, atoms[1].y, atoms[2].y, atoms[3].y, atoms[4].y, atoms[5].y]),
+                     stat.mean([atoms[0].z, atoms[1].z, atoms[2].z, atoms[3].z, atoms[4].z, atoms[5].z]))
 
 
 def print_header():
@@ -73,6 +83,8 @@ def print_header():
 def print_pos_res_ch_dis(pos1, res1, chain1, pos2, res2, chain2, dist):
     """
     function printing the the result's table
+
+    :param: the elements to print
     """
     print("{:^10}{:^10}{:^10}{:^10}{:^10}{:^10}{:^10.2f}"
           .format(pos1, res1, chain1, pos2, res2, chain2, dist))
@@ -91,6 +103,8 @@ def print_hydrogen_header():
 def print_hydrogen_res(posd, resd, chaind, named, posa, resa, chaina, namea, dist):
     """
     function printing the the result's table
+
+    :param: the elements to print
     """
     print("{:^10}{:^10}{:^10}{:^10}{:^10}{:^10}{:^10}{:^10}{:^10.2f}"
           .format(posd, resd, chaind, named, posa, resa, chaina, namea, dist))

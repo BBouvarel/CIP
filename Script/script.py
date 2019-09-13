@@ -21,7 +21,7 @@ if __name__ == "__main__":
 
     # interaction using distance threshold and the default values
     INTERAC_WITH_RANGE = ["--hphb", "--inic", "--arar", "--arsu", "--capi"]
-    INTERAC_RANGE = [5, 6, 4.5, 5.3, 6]
+    INTERAC_RANGE = [5, 6, [4.5, 7], 5.3, 6]
     # run all the calculation arguments of the command line
     for arg in range(2, len(sys.argv)):
         # check if the calculation of the interaction need a distance threshold
@@ -83,12 +83,41 @@ if __name__ == "__main__":
             print("\n")
 
         elif sys.argv[arg][0:6] == "--arar":
-            print(def_range)
-            # Lancer calcul interac aromatic-aromatic
+            # calculation of aromatic-aromatic interaction
+            print("{:>45} {}A ".format("Aromatic-Aromatic interactions", def_range))
+            ic.print_header()
+            arar = ic.parsing(sys.argv[1], ["CD1", "CD2", "CE1", "CE2", "CG", "CZ"], ["PHE"])
+            arar = arar + ic.parsing(sys.argv[1], ["CD2", "CE2", "CE3", "CH2", "CZ2", "CZ3"], ["TRP"])
+            arar = arar + ic.parsing(sys.argv[1], ["CD1", "CD2", "CE1", "CE2", "CG", "CZ"], ["TYR"])
+            pos_prev = []
+            i = 0
+            while i < len(arar):
+                j = i + 6
+                while j < len(arar):
+                    aro1 = ic.calc_centroid(arar[i:(i+6)])
+                    aro2 = ic.calc_centroid(arar[j:(j+6)])
+                    dist = ic.calc_range(aro1, aro2)
+                    #if arar[i].position == 29 and arar[j].position == 44: print(dist, aro1.residue, aro2.residue)
+                    if def_range[0] <= dist <= def_range[1] and \
+                            ([aro1.position, aro2.position] not in pos_prev) and \
+                            (aro1.position != aro2.position or
+                             aro1.chain != aro2.chain):
+                        ic.print_pos_res_ch_dis(aro1.position, aro1.residue,
+                                                aro1.chain, aro2.position,
+                                                aro2.residue, aro2.chain, dist)
+                        pos_prev.append([aro1.position, aro2.position])
+                    j += 6
+                i += 6
+            print("\n")
+
+
+
 
         elif sys.argv[arg][0:6] == "--arsu":
-            print(def_range)
-            # Lancer calcul interac aromatic-sulphur
+            pass
+
+
+            # 1 boucle while pour liste aro, 1 boucle for pour liste soufre
 
         elif sys.argv[arg][0:6] == "--capi":
             print(def_range)
