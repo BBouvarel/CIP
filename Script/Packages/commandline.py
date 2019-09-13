@@ -62,10 +62,10 @@ def check_help(argv):
     :param argv: list of the elements of the command line
     :return: a boolean to exit the program
     """
-    if len(argv) == 2 and argv[0][-9:] == "script.py" and argv[1] == "--help":
+    if len(argv) == 2 and argv[0][-6:] == "cip.py" and argv[1] == "--help":
         print("\nHelp:\n\n"
               "Command:\n"
-              "python script.py file.pdb --arg1 --arg2 --argN\n\n"
+              "python cip.py ../Data/file.pdb --arg1 --arg2 --argN\n\n"
               "Options:\n"
               "--hphb  ->  Run the calculation of hydrophobic interactions.\n"
               "            --hphbVALUE Give a specific distance value.\n"
