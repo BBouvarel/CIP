@@ -23,7 +23,7 @@ def add_to_list(line, liste):
     :param liste: list containing the objects of class atom
     :return: list of objects of class atom with the new element added
     """
-    liste.append(atom.Atom(line[12:15].strip(), line[22:26].strip(),
+    liste.append(atom.Atom(line[12:16].strip(), line[22:26].strip(),
                            line[17:20].strip(), line[21:22].strip(),
                            line[30:38].strip(), line[38:46].strip(),
                            line[46:54].strip()))
@@ -46,11 +46,11 @@ def parsing(pdb, name, res):
                 # if the line describe an atom
                 if line[17:20].strip() in res and len(res) != 0:
                     # if the residue of the line contain this specific atom
-                    if line[12:15].strip() in name and len(name) != 0:
+                    if line[12:16].strip() in name and len(name) != 0:
                         # if the atom of the line is the desired atom
                         elements = add_to_list(line, elements)
                 elif len(res) == 0:
-                    if line[12:15].strip() in name and len(name) != 0:
+                    if line[12:16].strip() in name and len(name) != 0:
                         elements = add_to_list(line, elements)
 
     return elements

@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+__author__ = "Bertrand Bouvarel"
+__date__ = "2019/09"
+
 import sys
 import commandline as cl
 import intcalc as ic
@@ -109,11 +112,11 @@ if __name__ == "__main__":
 
         elif sys.argv[arg][0:6] == "--mmhb":
             # calculation of hydrogen bonds main-main
-            print("{:^90}\n{:^40}{:^40}".format("Hydrogen bonds main-main", "Donnor", "Acceptor"))
+            print("{:^90}\n{:^40}{:^40}".format("Hydrogen bonds main-main", "Donors", "Acceptors"))
             ic.print_hydrogen_header()
 
             pos_prev = []
-            mmhb = ic.parsing(sys.argv[1], ["N", "O"], [])
+            mmhb = ic.parsing(sys.argv[1], ["N", "O", "OXT"], [])
             for i, elem1 in enumerate(mmhb):
                 for elem2 in mmhb[i + 1:]:
                     if elem1.name == "N" and elem2.name == "O":
@@ -138,41 +141,56 @@ if __name__ == "__main__":
 
         elif sys.argv[arg][0:6] == "--mshb":
             # calculation of hydrogen bonds main-side
-            print("{:^90}\n{:^40}{:^40}".format("Hydrogen bonds side-main", "Donor", "Acceptor"))
+            print("{:^90}\n{:^40}{:^40}".format("Hydrogen bonds main-side", "Donors", "Acceptors"))
             ic.print_hydrogen_header()
 
             main = ["N", "O", "OXT"]
-            side = ["OD", "OE", "OG", "OH", "ND", "NE", "NH", "NZ", "SG"]
+            #side = ["OD", "OE", "OG", "OH", "ND", "NE", "NH", "NZ", "SD", "SG"]
+            side_all = ["ND1", "ND2", "NE", "NE1", "NE2", "NH1", "NH2", "NZ", "OD1", "OD2", "OE1",
+                        "OE2", "OG", "OG1", "OH", "SD", "SG"]
+
+            side_don = {"ARG": ["NE", "NH1", "NH2"], "ASN": ["ND2"], "CYS": ["SG"],
+                        "GLN": ["NE2"], "HIS": ["ND1", "NE2"], "LYS": ["NZ"],
+                        "SER": ["OG"], "THR": ["OG1"], "TRP": ["NE1"], "TYR": ["OH"]}
+            side_acc = {"ASN": ["OD1"], "ASP": ["OD1", "OD2"], "GLN": ["OE1"],
+                        "GLU": ["OE1", "OE2"], "HIS": ["ND1", "NE2"], "MET": ["SD"], "SER": ["OG"],
+                        "THR": ["OG1"], "TYR": ["OH"]}
             pos_prev = []
             donor = None
             acceptor = None
-            do_ac = [(None, None)]
-            mshb = ic.parsing(sys.argv[1], main + side, [])
-            print(len(mshb))
+            prev_do_ac = (None, None)
+            mshb = ic.parsing(sys.argv[1], main + side_all, [])
 
             for i, elem1 in enumerate(mshb):
                 for elem2 in mshb[i + 1:]:
                     def_range = 3.5
+                    #print(elem1.name, elem2.name)
+                    if elem1.name in main and elem2.name in side_all:
+                        if elem1.name == "N" and\
+                                (elem2.residue in side_acc.keys() and elem2.name in side_acc[elem2.residue]):
+                            donor = elem1
+                            acceptor = elem2
+                        elif (elem1.name == "O" or elem1.name == "OXT") and\
+                                (elem2.residue in side_don.keys() and elem2.name in side_don[elem2.residue]):
+                            donor = elem2
+                            acceptor = elem1
+                    elif elem1.name in side_all and elem2.name in main:
+                        if elem2.name == "N" and \
+                                (elem1.residue in side_acc.keys() and elem1.name in side_acc[elem1.residue]):
+                            donor = elem2
+                            acceptor = elem1
+                        elif (elem2.name == "O" or elem2.name == "OXT") and \
+                                (elem1.residue in side_don.keys() and elem1.name in side_don[elem1.residue]):
+                            donor = elem1
+                            acceptor = elem2
+                    else:
+                        continue
 
-                    if (elem1.name in main and elem2.name in side):
-                        if elem1.name == "N":
-                            donor = elem1
-                            acceptor = elem2
-                        else:
-                            donor = elem2
-                            acceptor = elem1
-                        if elem2.name == "SG":
+                    if donor is not None and acceptor is not None and (donor, acceptor) != prev_do_ac:
+                        if donor.residue == "PRO" and donor.name == "N":
+                            continue
+                        if donor.name == "SG" or acceptor.name == "SD":
                             def_range = 4
-                    elif (elem1.name in side and elem2.name in main):
-                        if elem2.name == "N":
-                            donor = elem2
-                            acceptor = elem1
-                        else:
-                            donor = elem1
-                            acceptor = elem2
-                        if elem1.name == "SG":
-                            def_range = 4
-                    if donor is not None and acceptor is not None and (donor, acceptor) not in do_ac:
                         dist = ic.calc_range(donor, acceptor)
                         if dist <= def_range and \
                                 ([donor.position, acceptor.position] not in pos_prev or donor.name != acceptor.name) and \
@@ -180,36 +198,55 @@ if __name__ == "__main__":
                                  donor.chain != acceptor.chain or
                                  donor.name != acceptor.name) and \
                                 abs(donor.position - acceptor.position) >= 2:
+
                             ic.print_hydrogen_res(donor.position, donor.residue,
                                                   donor.chain, donor.name,
                                                   acceptor.position, acceptor.residue,
                                                   acceptor.chain, acceptor.name, dist)
                             pos_prev.append([donor.position, acceptor.position])
-                        do_ac.append((donor, acceptor))
+                        prev_do_ac = (donor, acceptor)
             print("\n")
 
         elif sys.argv[arg][0:6] == "--sshb":
             # calculation of hydrogen bonds side-side
-            print("{:^90}\n{:^40}{:^40}".format("Hydrogen bonds side-side", "Donnor", "Acceptor"))
+            print("{:^90}\n{:^40}{:^40}".format("Hydrogen bonds side-side", "Donors", "Acceptors"))
             ic.print_hydrogen_header()
 
+            side_all = ["ND1", "ND2", "NE", "NE1", "NE2", "NH1", "NH2", "NZ", "OD1", "OD2", "OE1",
+                        "OE2", "OG", "OG1", "OH", "SD", "SG"]
+            poss_don = {"ARG": ["NE", "NH1", "NH2"], "ASN": ["ND2"], "CYS": ["SG"],
+                        "GLN": ["NE2"], "HIS": ["ND1", "NE2"], "LYS": ["NZ"],
+                        "SER": ["OG"], "THR": ["OG1"], "TRP": ["NE1"], "TYR": ["OH"]}
+            poss_acc = {"ASN": ["OD1"], "ASP": ["OD1", "OD2"], "GLN": ["OE1"],
+                        "GLU": ["OE1", "OE2"], "HIS": ["ND1", "NE2"], "MET": ["SD"], "SER": ["OG"],
+                        "THR": ["OG1"], "TYR": ["OH"]}
+            donor = None
+            acceptor = None
             pos_prev = []
-            mmhb = ic.parsing(sys.argv[1], ["N", "O"], [])
-            for i, elem1 in enumerate(mmhb):
-                for elem2 in mmhb[i + 1:]:
-                    if elem1.name == "N" and elem2.name == "O":
+            prev_do_ac = (None, None)
+            sshb = ic.parsing(sys.argv[1], side_all, [])
+            for i, elem1 in enumerate(sshb):
+                for elem2 in sshb:
+                    def_range = 3.5
+                    if (elem1.residue in poss_don.keys() and elem1.name in poss_don[elem1.residue]) and\
+                            (elem2.residue in poss_acc.keys() and elem2.name in poss_acc[elem2.residue]):
                         donor = elem1
                         acceptor = elem2
-                    elif elem1.name == "O" and elem2.name == "N":
+                    elif (elem1.residue in poss_acc.keys() and elem1.name in poss_acc[elem1.residue]) and\
+                            (elem2.residue in poss_don.keys() and elem2.name in poss_don[elem2.residue]):
                         donor = elem2
                         acceptor = elem1
+                    else:
+                        continue
+                    if donor.name == "SG" or acceptor.name == "SD":
+                        def_range = 4
                     dist = ic.calc_range(donor, acceptor)
-                    if dist <= 3.5 and \
+                    if dist <= def_range and \
                             ([donor.position, acceptor.position] not in pos_prev) and \
                             (donor.position != acceptor.position or
-                             donor.chain != acceptor.chain) and \
-                            abs(donor.position - acceptor.position) >= 2 and \
-                            donor.residue != "PRO":
+                             donor.chain != acceptor.chain or
+                             donor.name != acceptor.name) and \
+                            abs(donor.position - acceptor.position) >= 2:
                         ic.print_hydrogen_res(donor.position, donor.residue,
                                               donor.chain, donor.name,
                                               acceptor.position, acceptor.residue,
@@ -218,4 +255,4 @@ if __name__ == "__main__":
             print("\n")
 
         else:
-            sys.exit("L'un des arguments n'est pas reconnu par le programme")
+            sys.exit("One of the arguments is not recognized by the program")
