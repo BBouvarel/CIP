@@ -1,10 +1,10 @@
-==========CREATION OF AN INTERACTION CALCULATION PROGRAM==========
+========== CREATION OF AN INTERACTION CALCULATION PROGRAM ==========
 Author : Bertrand Bouvarel
 Promotion : M2BI 2019-2020
 Python version : Python 3.7.4
 Based on the article : Tina, K. G., Bhadra, R., & Srinivasan, N. (2007). 
-		       PIC: Protein Interactions Calculator. Nucleic Acids Research, 
-		       35(Web Server), W473–W476.
+		       PIC: Protein Interactions Calculator. Nucleic Acids 
+                       Research, 35(Web Server), W473–W476.
 
 Modules used :
 - sys
@@ -15,11 +15,11 @@ Modules used :
 - intcalc (written by the contributor)
 
 
-==========DESCRIPTION==========
+========== DESCRIPTION ==========
 A REDIGER
 
 
-==========USE==========
+========== USE ==========
 A REDIGER
 Run the program as follows in the bash:
 >>>>>>>>>> python cip.py ../Data/file.pdb --arg1 --arg2 --argN <<<<<<<<<<
