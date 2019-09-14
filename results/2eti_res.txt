@@ -17,7 +17,7 @@ Results of the intra-protein interaction calculation:
  Position  Residue    Chain    Position  Residue    Chain    Distance 
 
 
-               Aromatic-sulphure interactions 5.3A
+                Aromatic-sulphur interactions 5.3A
  Position  Residue    Chain    Position  Residue    Chain    Distance 
 
 

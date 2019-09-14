@@ -20,7 +20,7 @@ Results of the intra-protein interaction calculation:
     74       PHE        A         53       TRP        A        7.00   
 
 
-               Aromatic-sulphure interactions 5.3A
+                Aromatic-sulphur interactions 5.3A
  Position  Residue    Chain    Position  Residue    Chain    Distance 
     30       TYR        A         40       CYS        A        5.03   
     47       TYR        A         82       CYS        A        4.34   
