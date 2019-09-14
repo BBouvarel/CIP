@@ -1,5 +1,13 @@
 #!/usr/bin/env python
 
+"""
+    package for checking errors in the command line passed to cip.py,
+    and assigning threshold distance values if necessary
+"""
+
+__author__ = "Bertrand Bouvarel"
+__date__ = "2019/09"
+
 
 def check_command(argv):
     """
@@ -23,7 +31,7 @@ def set_val_default(arg_input, arg_name, def_range):
     function to assign a threshold distance value used by some calculation of interactions
 
     :param arg_input: argument calling a specific interaction calculation write by the user
-                     (can be associate to a number)
+                      (can be associate to a number)
     :param arg_name: name of the argument (without number)
     :param def_range: default value used by the interaction calculation
     :return: a threshold distance or -1 if there is an error in the number send by the user
@@ -65,25 +73,31 @@ def check_help(argv):
     if len(argv) == 2 and argv[0][-6:] == "cip.py" and argv[1] == "--help":
         print("\nHelp:\n\n"
               "Command:\n"
-              "python cip.py ../data/file.pdb --arg1 --arg2 --argN\n\n"
+              "python3 cip.py ../data/file.pdb --arg1 --arg2 --argN\n\n"
               "Options:\n"
-              "--hphb  ->  Run the calculation of hydrophobic interactions.\n"
-              "            --hphbVALUE Give a specific distance value.\n"
-              "            (ex: --hphb1.0 , default value: 5A).\n\n"
-              "--inic  ->  Run the calculation of ionic interactions.\n"
-              "            --inicVALUE Give a specific distance value.\n"
-              "            (ex: --inic1.0 , default value: 6A).\n\n"
-              "--arar  ->  Run the calculation of aromatic-aromatic interactions.\n"
-              "            --ararVALUE1/VALUE2 Give a specific distance interval.\n"
-              "            (ex: --arar1.0/5.0 , default value: 4.5A to 7A).\n\n"
-              "--arsu  ->  Run the calculation of aromatic-sulphur interactions.\n"
-              "            --arsuVALUE Give a specific distance value.\n"
-              "            (ex: --arsu1.0 , default value: 5.3A).\n\n"
-              "--capi  ->  Run the calculation of cation-pi interactions.\n"
-              "            --capiVALUE Give a specific distance value.\n"
-              "            (ex: --capi1.0 , default value: 6A).\n\n"
-              "--disu  ->  Run the calculation of disulphide bridges.\n\n"
-              "--mmhb  ->  Run the calculation of main chain-main chain hydrogen bond.\n\n"
-              "--mshb  ->  Run the calculation of main chain-side chain hydrogen bond.\n\n"
-              "--sshb  ->  Run the calculation of side chain-side chain hydrogen bond.\n\n")
+              "--help  ->  Show the help message\n\n"
+              "--hphb  ->  Run the calculation of hydrophobic interactions\n"
+              "            --hphbVALUE Give a specific distance value\n"
+              "            (ex: --hphb1.0 , default value: 5A)\n\n"
+              "--inic  ->  Run the calculation of ionic interactions\n"
+              "            --inicVALUE Give a specific distance value\n"
+              "            (ex: --inic1.0 , default value: 6A)\n\n"
+              "--arar  ->  Run the calculation of aromatic-aromatic interactions\n"
+              "            --ararVALUE1/VALUE2 Give a specific distance interval\n"
+              "            (ex: --arar1.0/5.0 , default value: 4.5A to 7A)\n\n"
+              "--arsu  ->  Run the calculation of aromatic-sulphur interactions\n"
+              "            --arsuVALUE Give a specific distance value\n"
+              "            (ex: --arsu1.0 , default value: 5.3A)\n\n"
+              "--capi  ->  Run the calculation of cation-pi interactions\n"
+              "            --capiVALUE Give a specific distance value\n"
+              "            (ex: --capi1.0 , default value: 6A)\n\n"
+              "--disu  ->  Run the calculation of disulphide bridges\n\n"
+              "--mmhb  ->  Run the calculation of main chain-main chain hydrogen bond\n\n"
+              "--mshb  ->  Run the calculation of main chain-side chain hydrogen bond\n\n"
+              "--sshb  ->  Run the calculation of side chain-side chain hydrogen bond\n\n"
+              "Examples of command:\n"
+              "> python3 cip.py ../data/1atn.pdb --inic --disu --arar --arsu --capi --hphb "
+              "--mmhb --mshb --sshb\n\n"
+              "> python3 cip.py ../data/1atn.pdb --inic6.5 --disu --arar4/6.5 --arsu5.5 --capi7 "
+              "--hphb4.5 --mmhb --mshb --sshb\n\n")
         return True
