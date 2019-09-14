@@ -47,9 +47,11 @@ protein. Will be displayed in these tables:
 ========== EXAMPLES ==========
 To launch the calculation of all of the interactions implemented with 
 the default values of distance, use the command:
->>>>> python3 cip.py ../data/1atn.pdb --inic --disu --arar --arsu --capi --hphb --mmhb --mshb --sshb <<<<<
+>>>>> python3 cip.py ../data/2eti.pdb --inic --disu --arar --arsu --capi --hphb --mmhb --mshb --sshb <<<<<
 
 >>>>> python3 cip.py ../data/1bta.pdb --inic --disu --arar --arsu --capi --hphb --mmhb --mshb --sshb <<<<<
 
->>>>> python3 cip.py ../data/2eti.pdb --inic --disu --arar --arsu --capi --hphb --mmhb --mshb --sshb <<<<<
+>>>>> python3 cip.py ../data/1atn.pdb --inic --disu --arar --arsu --capi --hphb --mmhb --mshb --sshb <<<<<
+
+>>>>> python3 cip.py ../data/1atn.pdb --inic6.5 --disu --arar4/6.5 --arsu5.5 --capi7 --hphb4.5 --mmhb --mshb --sshb <<<<<
 
