@@ -13,11 +13,11 @@ if __name__ == "__main__":
         sys.exit()
     # check for potential errors in the command line
     if cl.check_command(sys.argv) == 1:
-        sys.exit("A pdb file or arguments are missing")
+        sys.exit("A pdb file or arguments are missing, type --help to access the program help")
     elif cl.check_command(sys.argv) == 2:
-        sys.exit("A pdb file is needed")
+        sys.exit("A pdb file is needed, type --help to access the program help")
     elif cl.check_command(sys.argv) == 3:
-        sys.exit("No interactions calculation are given")
+        sys.exit("No interactions calculation are given, type --help to access the program help")
 
     # interaction using distance threshold and the default values
     INTERAC_WITH_RANGE = ["--hphb", "--inic", "--arar", "--arsu", "--capi"]
@@ -34,7 +34,7 @@ if __name__ == "__main__":
             def_range = cl.set_val_default(sys.argv[arg], sys.argv[arg][0:6],
                                            INTERAC_RANGE[INTERAC_WITH_RANGE.index(sys.argv[arg][0:6])])
             if def_range == -1:
-                sys.exit()
+                continue
 
         # LANE DOUBLE BOUCLE PUIS FI CHECK LA COMMANDE QUI PERMET DE LANCER LA FONC DE L'INTERAC QUI CORRESPOND AVEC LES PRINT DANS LA FONCTION
         if sys.argv[arg][0:6] == "--hphb":
