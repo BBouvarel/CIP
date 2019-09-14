@@ -65,7 +65,7 @@ def check_help(argv):
     if len(argv) == 2 and argv[0][-6:] == "cip.py" and argv[1] == "--help":
         print("\nHelp:\n\n"
               "Command:\n"
-              "python cip.py ../Data/file.pdb --arg1 --arg2 --argN\n\n"
+              "python cip.py ../data/file.pdb --arg1 --arg2 --argN\n\n"
               "Options:\n"
               "--hphb  ->  Run the calculation of hydrophobic interactions.\n"
               "            --hphbVALUE Give a specific distance value.\n"

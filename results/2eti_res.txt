@@ -1,0 +1,66 @@
+Results of the intra-protein interaction calculation:
+
+
+                           Ionic interactions 6A
+ Position  Residue    Chain    Position  Residue    Chain    Distance 
+    8        ARG        A         14       ASP        A        4.98   
+
+
+                           Disulphide bridges 2.2A
+ Position  Residue    Chain    Position  Residue    Chain    Distance 
+    2        CYS        A         19       CYS        A        2.04   
+    9        CYS        A         21       CYS        A        2.04   
+    15       CYS        A         27       CYS        A        2.04   
+
+
+               Aromatic-aromatic interactions 4.5-7A
+ Position  Residue    Chain    Position  Residue    Chain    Distance 
+
+
+               Aromatic-sulphure interactions 5.3A
+ Position  Residue    Chain    Position  Residue    Chain    Distance 
+
+
+                       Cation-pi interactions 6A
+ Position  Residue    Chain    Position  Residue    Chain    Distance 
+
+
+                     Hydrophobic interactions 5A
+ Position  Residue    Chain    Position  Residue    Chain    Distance 
+    5        ILE        A         26       PHE        A        4.25   
+    6        LEU        A         7        MET        A        4.98   
+    7        MET        A         16       LEU        A        4.89   
+    23       PRO        A         26       PHE        A        4.91   
+
+
+                     Hydrogen bonds main-main 3.5/4A
+ Position  Residue    Chain      Atom    Position  Residue    Chain      Atom    Distance 
+    6        LEU        A         N         4        ARG        A         O        3.17   
+    27       CYS        A         N         7        MET        A         O        3.29   
+    9        CYS        A         N         25       GLY        A         O        2.97   
+    13       SER        A         N         11       GLN        A         O        2.70   
+    14       ASP        A         N         12       ASP        A         O        3.30   
+    15       CYS        A         N         12       ASP        A         O        2.80   
+    15       CYS        A         N         13       SER        A         O        2.97   
+    19       CYS        A         N         17       ALA        A         O        3.36   
+    28       GLY        A         N         20       VAL        A         O        3.12   
+    22       GLY        A         N         26       PHE        A         O        2.98   
+    25       GLY        A         N         23       PRO        A         O        2.94   
+
+
+                     Hydrogen bonds main-side 3.5/4A
+ Position  Residue    Chain      Atom    Position  Residue    Chain      Atom    Distance 
+    19       CYS        A         SG        2        CYS        A         O        3.30   
+    2        CYS        A         SG        18       GLY        A         O        3.19   
+    9        CYS        A         SG        26       PHE        A         O        3.87   
+    10       LYS        A         N         14       ASP        A        OD2       2.80   
+    21       CYS        A         SG        10       LYS        A         O        3.76   
+    11       GLN        A         N         14       ASP        A        OD2       2.82   
+    13       SER        A         OG        11       GLN        A         O        3.40   
+    15       CYS        A         SG        12       ASP        A         O        3.43   
+    27       CYS        A         SG        20       VAL        A         O        3.49   
+
+
+                     Hydrogen bonds side-side 3.5/4A
+ Position  Residue    Chain      Atom    Position  Residue    Chain      Atom    Distance 
+    8        ARG        A        NH2        14       ASP        A        OD1       2.81   

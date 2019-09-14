@@ -4,8 +4,8 @@ __author__ = "Bertrand Bouvarel"
 __date__ = "2019/09"
 
 import sys
-import Packages.commandline as cl
-import Packages.intcalc as ic
+import packages.commandline as cl
+import packages.intcalc as ic
 
 if __name__ == "__main__":
     # check if the help is called
@@ -23,6 +23,11 @@ if __name__ == "__main__":
     INTERAC_WITH_RANGE = ["--hphb", "--inic", "--arar", "--arsu", "--capi"]
     INTERAC_RANGE = [5, 6, [4.5, 7], 5.3, 6]
     # run all the calculation arguments of the command line
+
+    with open("../results/"+sys.argv[1][-8:-4]+"_res.txt", "w") as fout:
+        fout.write("Results of the intra-protein interaction calculation:")
+        # Create an empty result file
+
     for arg in range(2, len(sys.argv)):
         # check if the calculation of the interaction need a distance threshold
         if sys.argv[arg][0:6] in INTERAC_WITH_RANGE:
@@ -34,8 +39,8 @@ if __name__ == "__main__":
         # LANE DOUBLE BOUCLE PUIS FI CHECK LA COMMANDE QUI PERMET DE LANCER LA FONC DE L'INTERAC QUI CORRESPOND AVEC LES PRINT DANS LA FONCTION
         if sys.argv[arg][0:6] == "--hphb":
             # calculation of hydrophobic interaction
-            print("{:>45} {}A ".format("Hydrophobic interactions", def_range))
-            ic.print_header()
+            #print("{:>45} {}A ".format("Hydrophobic interactions", def_range))
+            ic.print_header(sys.argv[1][-8:-4], "Hydrophobic interactions", def_range)
 
             hphb = ic.parsing(sys.argv[1], ["CB", "CD", "CD1", "CD2", "CE", "CE1", "CE2", "CE3",
                                             "CG", "CG1", "CG2", "CH2", "CZ", "CZ2", "CZ3", "NE1", "SD"],
@@ -49,7 +54,7 @@ if __name__ == "__main__":
                             ([elem1.position, elem2.position] not in pos_prev) and \
                             (elem1.position != elem2.position or
                              elem1.chain != elem2.chain):
-                        ic.print_pos_res_ch_dis(elem1.position, elem1.residue,
+                        ic.print_pos_res_ch_dis(sys.argv[1][-8:-4], elem1.position, elem1.residue,
                                                 elem1.chain, elem2.position,
                                                 elem2.residue, elem2.chain, dist)
                         # print the results
@@ -58,8 +63,8 @@ if __name__ == "__main__":
 
         elif sys.argv[arg][0:6] == "--inic":
             # calculation of ionic interaction
-            print("{:>45} {}A ".format("Ionic interactions", def_range))
-            ic.print_header()
+            #print("{:>45} {}A ".format("Ionic interactions", def_range))
+            ic.print_header(sys.argv[1][-8:-4], "Ionic interactions", def_range)
 
             inic = ic.parsing(sys.argv[1], ["ND1", "NH2", "NZ", "OD2", "OE2"],
                               ["ARG", "LYS", "HIS", "ASP", "GLU"])
@@ -81,7 +86,7 @@ if __name__ == "__main__":
                         if (elem1.residue in pos_res and elem2.residue in neg_res) or \
                                 (elem1.residue in neg_res and elem2.residue in pos_res):
                             # binding of a positive res with a negative res only
-                            ic.print_pos_res_ch_dis(elem1.position, elem1.residue,
+                            ic.print_pos_res_ch_dis(sys.argv[1][-8:-4], elem1.position, elem1.residue,
                                                     elem1.chain, elem2.position,
                                                     elem2.residue, elem2.chain, dist)
                             pos_prev.append([elem1.position, elem2.position])
@@ -89,8 +94,8 @@ if __name__ == "__main__":
 
         elif sys.argv[arg][0:6] == "--arar":
             # calculation of aromatic-aromatic interaction
-            print("{:>45} {}-{}A ".format("Aromatic-Aromatic interactions", def_range[0], def_range[1]))
-            ic.print_header()
+            #print("{:>45} {}-{}A ".format("Aromatic-Aromatic interactions", def_range[0], def_range[1]))
+            ic.print_header(sys.argv[1][-8:-4], "Aromatic-aromatic interactions", def_range)
             arar = ic.parsing(sys.argv[1], ["CD1", "CD2", "CE1", "CE2", "CG", "CZ"], ["PHE", "TYR"])
             arar = arar + ic.parsing(sys.argv[1], ["CD2", "CE2", "CE3", "CH2", "CZ2", "CZ3"], ["TRP"])
 
@@ -107,7 +112,7 @@ if __name__ == "__main__":
                             ([aro1.position, aro2.position] not in pos_prev) and \
                             (aro1.position != aro2.position or
                              aro1.chain != aro2.chain):
-                        ic.print_pos_res_ch_dis(aro1.position, aro1.residue,
+                        ic.print_pos_res_ch_dis(sys.argv[1][-8:-4], aro1.position, aro1.residue,
                                                 aro1.chain, aro2.position,
                                                 aro2.residue, aro2.chain, dist)
                         pos_prev.append([aro1.position, aro2.position])
@@ -117,8 +122,8 @@ if __name__ == "__main__":
 
         elif sys.argv[arg][0:6] == "--arsu":
             # calculation of aromatic-sulphur interaction
-            print("{:>45} {}A ".format("Aromatic-Sulphure interactions", def_range))
-            ic.print_header()
+            #print("{:>45} {}A ".format("Aromatic-Sulphure interactions", def_range))
+            ic.print_header(sys.argv[1][-8:-4], "Aromatic-sulphure interactions", def_range)
             aro_all = ic.parsing(sys.argv[1], ["CD1", "CD2", "CE1", "CE2", "CG", "CZ"], ["PHE", "TYR"])
             aro_all = aro_all + ic.parsing(sys.argv[1], ["CD2", "CE2", "CE3", "CH2", "CZ2", "CZ3"], ["TRP"])
             sul_all = ic.parsing(sys.argv[1], ["SD", "SG"], ["CYS", "MET"])
@@ -132,7 +137,7 @@ if __name__ == "__main__":
                             ([aro.position, sul.position] not in pos_prev) and \
                             (aro.position != sul.position or
                              aro.chain != sul.chain):
-                        ic.print_pos_res_ch_dis(aro.position, aro.residue,
+                        ic.print_pos_res_ch_dis(sys.argv[1][-8:-4], aro.position, aro.residue,
                                                 aro.chain, sul.position,
                                                 sul.residue, sul.chain, dist)
                         pos_prev.append([aro.position, sul.position])
@@ -142,8 +147,8 @@ if __name__ == "__main__":
 
         elif sys.argv[arg][0:6] == "--capi":
             # calculation of Cation-pi interaction
-            print("{:>45} {}A ".format("Cation-pi interactions", def_range))
-            ic.print_header()
+            #print("{:>45} {}A ".format("Cation-pi interactions", def_range))
+            ic.print_header(sys.argv[1][-8:-4], "Cation-pi interactions", def_range)
             #aro_all = ic.parsing(sys.argv[1], ["CB", "CD1", "CD2", "CE1", "CE2", "CE3", "CG",
              #                                  "CH2", "CZ", "CZ2", "CZ3", "NE1", "OH"],
              #                    ["PHE", "TRP", "TYR"])
@@ -163,7 +168,7 @@ if __name__ == "__main__":
                             ([aro.position, ato_cat.position] not in pos_prev) and \
                             (aro.position != ato_cat.position or
                              aro.chain != ato_cat.chain):
-                        ic.print_pos_res_ch_dis(aro.position, aro.residue,
+                        ic.print_pos_res_ch_dis(sys.argv[1][-8:-4], aro.position, aro.residue,
                                                 aro.chain, ato_cat.position,
                                                 ato_cat.residue, ato_cat.chain, dist)
                         pos_prev.append([aro.position, ato_cat.position])
@@ -172,8 +177,8 @@ if __name__ == "__main__":
 
         elif sys.argv[arg][0:6] == "--disu":
             # calculation of disulphide bridges
-            print("{:^70}".format("Disulphide bridges 2.2A"))
-            ic.print_header()
+            #print("{:^70}".format("Disulphide bridges 2.2A"))
+            ic.print_header(sys.argv[1][-8:-4], "Disulphide bridges", 2.2)
 
             sulphur = ic.parsing(sys.argv[1], ["SG"], ["CYS"])
             for i, elem1 in enumerate(sulphur):
@@ -181,15 +186,15 @@ if __name__ == "__main__":
                 for elem2 in sulphur[i + 1:]:
                     dist = ic.calc_range(elem1, elem2)
                     if dist <= 2.2:
-                        ic.print_pos_res_ch_dis(elem1.position, elem1.residue,
+                        ic.print_pos_res_ch_dis(sys.argv[1][-8:-4], elem1.position, elem1.residue,
                                                 elem1.chain, elem2.position,
                                                 elem2.residue, elem2.chain, dist)
             print("\n")
 
         elif sys.argv[arg][0:6] == "--mmhb":
             # calculation of hydrogen bonds main-main
-            print("{:^90}\n{:^40}{:^40}".format("Hydrogen bonds main-main", "Donors", "Acceptors"))
-            ic.print_hydrogen_header()
+            # print("{:^90}\n{:^40}{:^40}".format("Hydrogen bonds main-main", "Donors", "Acceptors"))
+            ic.print_hydrogen_header(sys.argv[1][-8:-4], "Hydrogen bonds main-main", [3.5, 4])
 
             pos_prev = []
             mmhb = ic.parsing(sys.argv[1], ["N", "O", "OXT"], [])
@@ -208,7 +213,7 @@ if __name__ == "__main__":
                              donor.chain != acceptor.chain) and \
                             abs(donor.position - acceptor.position) >= 2 and \
                             donor.residue != "PRO":
-                        ic.print_hydrogen_res(donor.position, donor.residue,
+                        ic.print_hydrogen_res(sys.argv[1][-8:-4], donor.position, donor.residue,
                                               donor.chain, donor.name,
                                               acceptor.position, acceptor.residue,
                                               acceptor.chain, acceptor.name, dist)
@@ -217,8 +222,8 @@ if __name__ == "__main__":
 
         elif sys.argv[arg][0:6] == "--mshb":
             # calculation of hydrogen bonds main-side
-            print("{:^90}\n{:^40}{:^40}".format("Hydrogen bonds main-side", "Donors", "Acceptors"))
-            ic.print_hydrogen_header()
+            #print("{:^90}\n{:^40}{:^40}".format("Hydrogen bonds main-side", "Donors", "Acceptors"))
+            ic.print_hydrogen_header(sys.argv[1][-8:-4], "Hydrogen bonds main-side", [3.5, 4])
 
             main = ["N", "O", "OXT"]
             #side = ["OD", "OE", "OG", "OH", "ND", "NE", "NH", "NZ", "SD", "SG"]
@@ -275,7 +280,7 @@ if __name__ == "__main__":
                                  donor.name != acceptor.name) and \
                                 abs(donor.position - acceptor.position) >= 2:
 
-                            ic.print_hydrogen_res(donor.position, donor.residue,
+                            ic.print_hydrogen_res(sys.argv[1][-8:-4], donor.position, donor.residue,
                                                   donor.chain, donor.name,
                                                   acceptor.position, acceptor.residue,
                                                   acceptor.chain, acceptor.name, dist)
@@ -285,8 +290,8 @@ if __name__ == "__main__":
 
         elif sys.argv[arg][0:6] == "--sshb":
             # calculation of hydrogen bonds side-side
-            print("{:^90}\n{:^40}{:^40}".format("Hydrogen bonds side-side", "Donors", "Acceptors"))
-            ic.print_hydrogen_header()
+            #print("{:^90}\n{:^40}{:^40}".format("Hydrogen bonds side-side", "Donors", "Acceptors"))
+            ic.print_hydrogen_header(sys.argv[1][-8:-4], "Hydrogen bonds side-side", [3.5, 4])
 
             side_all = ["ND1", "ND2", "NE", "NE1", "NE2", "NH1", "NH2", "NZ", "OD1", "OD2", "OE1",
                         "OE2", "OG", "OG1", "OH", "SD", "SG"]
@@ -323,7 +328,7 @@ if __name__ == "__main__":
                              donor.chain != acceptor.chain or
                              donor.name != acceptor.name) and \
                             abs(donor.position - acceptor.position) >= 2:
-                        ic.print_hydrogen_res(donor.position, donor.residue,
+                        ic.print_hydrogen_res(sys.argv[1][-8:-4], donor.position, donor.residue,
                                               donor.chain, donor.name,
                                               acceptor.position, acceptor.residue,
                                               acceptor.chain, acceptor.name, dist)

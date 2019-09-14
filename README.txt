@@ -6,7 +6,7 @@ Based on the article : Tina, K. G., Bhadra, R., & Srinivasan, N. (2007).
 		       PIC: Protein Interactions Calculator. Nucleic Acids 
                        Research, 35(Web Server), W473–W476.
 
-Modules used :
+Packages used :
 - sys
 - math
 - statistics
@@ -16,7 +16,9 @@ Modules used :
 
 
 ========== DESCRIPTION ==========
-A REDIGER
+Program for the calculation of disulphide bridges, hydrogen bonds and 
+hydrophobic, ionic, aromatic-aromatic, aromatic-sulfur, cation-pi
+interactions, using the PDB file of the protein.
 
 
 ========== USE ==========
