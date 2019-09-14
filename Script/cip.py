@@ -89,17 +89,17 @@ if __name__ == "__main__":
 
         elif sys.argv[arg][0:6] == "--arar":
             # calculation of aromatic-aromatic interaction
-            print("{:>45} {}A ".format("Aromatic-Aromatic interactions", def_range))
+            print("{:>45} {}-{}A ".format("Aromatic-Aromatic interactions", def_range[0], def_range[1]))
             ic.print_header()
-            arar = ic.parsing(sys.argv[1], ["CD1", "CD2", "CE1", "CE2", "CG", "CZ"], ["PHE"])
+            arar = ic.parsing(sys.argv[1], ["CD1", "CD2", "CE1", "CE2", "CG", "CZ"], ["PHE", "TYR"])
             arar = arar + ic.parsing(sys.argv[1], ["CD2", "CE2", "CE3", "CH2", "CZ2", "CZ3"], ["TRP"])
-            arar = arar + ic.parsing(sys.argv[1], ["CD1", "CD2", "CE1", "CE2", "CG", "CZ"], ["TYR"])
+
             pos_prev = []
             i = 0
             while i < len(arar):
+                aro1 = ic.calc_centroid(arar[i:(i + 6)])
                 j = i + 6
                 while j < len(arar):
-                    aro1 = ic.calc_centroid(arar[i:(i+6)])
                     aro2 = ic.calc_centroid(arar[j:(j+6)])
                     dist = ic.calc_range(aro1, aro2)
                     #if arar[i].position == 29 and arar[j].position == 44: print(dist, aro1.residue, aro2.residue)
@@ -115,18 +115,60 @@ if __name__ == "__main__":
                 i += 6
             print("\n")
 
-
-
-
         elif sys.argv[arg][0:6] == "--arsu":
-            pass
+            # calculation of aromatic-sulphur interaction
+            print("{:>45} {}A ".format("Aromatic-Sulphure interactions", def_range))
+            ic.print_header()
+            aro_all = ic.parsing(sys.argv[1], ["CD1", "CD2", "CE1", "CE2", "CG", "CZ"], ["PHE", "TYR"])
+            aro_all = aro_all + ic.parsing(sys.argv[1], ["CD2", "CE2", "CE3", "CH2", "CZ2", "CZ3"], ["TRP"])
+            sul_all = ic.parsing(sys.argv[1], ["SD", "SG"], ["CYS", "MET"])
+            pos_prev = []
+            i = 0
+            while i < len(aro_all):
+                aro = ic.calc_centroid(aro_all[i:(i + 6)])
+                for sul in sul_all:
+                    dist = ic.calc_range(aro, sul)
+                    if dist <= def_range and \
+                            ([aro.position, sul.position] not in pos_prev) and \
+                            (aro.position != sul.position or
+                             aro.chain != sul.chain):
+                        ic.print_pos_res_ch_dis(aro.position, aro.residue,
+                                                aro.chain, sul.position,
+                                                sul.residue, sul.chain, dist)
+                        pos_prev.append([aro.position, sul.position])
+                i += 6
+            print("\n")
 
-
-            # 1 boucle while pour liste aro, 1 boucle for pour liste soufre
 
         elif sys.argv[arg][0:6] == "--capi":
-            print(def_range)
-            # Lancer calcul interac cation-pi
+            # calculation of Cation-pi interaction
+            print("{:>45} {}A ".format("Cation-pi interactions", def_range))
+            ic.print_header()
+            #aro_all = ic.parsing(sys.argv[1], ["CB", "CD1", "CD2", "CE1", "CE2", "CE3", "CG",
+             #                                  "CH2", "CZ", "CZ2", "CZ3", "NE1", "OH"],
+             #                    ["PHE", "TRP", "TYR"])
+            aro_all = ic.parsing(sys.argv[1], ["CD1", "CD2", "CE1", "CE2", "CG", "CZ"], ["PHE", "TYR"])
+            aro_all = aro_all + ic.parsing(sys.argv[1], ["CD2", "CE2", "CE3", "CH2", "CZ2", "CZ3"], ["TRP"])
+            cation_all = ic.parsing(sys.argv[1], ["NH2", "NZ"], ["ARG", "LYS"])
+            # cation_all = ic.parsing(sys.argv[1], ["CB", "CD", "CE", "CG", "CZ", "NE", "NH1",
+            #                                                   "NH2", "NZ"], ["ARG", "LYS"])
+
+            pos_prev = []
+            i = 0
+            while i < len(aro_all):
+                aro = ic.calc_centroid(aro_all[i:(i + 6)])
+                for ato_cat in cation_all:
+                    dist = ic.calc_range(aro, ato_cat)
+                    if dist <= def_range and \
+                            ([aro.position, ato_cat.position] not in pos_prev) and \
+                            (aro.position != ato_cat.position or
+                             aro.chain != ato_cat.chain):
+                        ic.print_pos_res_ch_dis(aro.position, aro.residue,
+                                                aro.chain, ato_cat.position,
+                                                ato_cat.residue, ato_cat.chain, dist)
+                        pos_prev.append([aro.position, ato_cat.position])
+                i += 6
+            print("\n")
 
         elif sys.argv[arg][0:6] == "--disu":
             # calculation of disulphide bridges
