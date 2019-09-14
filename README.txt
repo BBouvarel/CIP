@@ -44,7 +44,6 @@ protein. Will be displayed in these tables:
 - the distance between the atoms / centroids involved in the interaction
 
 
-
 ========== EXAMPLES ==========
 To launch the calculation of all of the interactions implemented with 
 the default values of distance, use the command:
@@ -53,3 +52,4 @@ the default values of distance, use the command:
 >>>>> python3 cip.py ../data/1bta.pdb --inic --disu --arar --arsu --capi --hphb --mmhb --mshb --sshb <<<<<
 
 >>>>> python3 cip.py ../data/2eti.pdb --inic --disu --arar --arsu --capi --hphb --mmhb --mshb --sshb <<<<<
+
