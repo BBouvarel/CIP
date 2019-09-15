@@ -24,6 +24,8 @@ def check_command(argv):
     if len(argv) == 2:
         # no arguments for the interactions calculation
         return 3
+    if argv[2] not in ["--intra", "--inter"]:
+        return 4
 
 
 def set_val_default(arg_input, arg_name, def_range):
@@ -74,9 +76,10 @@ def check_help(argv):
     if len(argv) == 2 and argv[0][-6:] == "cip.py" and argv[1] == "--help":
         print("\nHelp:\n\n"
               "Command:\n"
-              "python3 cip.py ../data/file.pdb --arg1 --arg2 --argN\n\n"
+              "python3 cip.py ../data/file.pdb --intra --arg1 --arg2 --argN\n\n"
               "Options:\n"
               "--help  ->  Show the help message\n\n"
+              "--intra / --inter ->  calculates intra / inter protein interactions\n\n"
               "--hphb  ->  Run the calculation of hydrophobic interactions\n"
               "            --hphbVALUE Give a specific distance value\n"
               "            (ex: --hphb1.0 , default value: 5A)\n\n"
@@ -97,8 +100,10 @@ def check_help(argv):
               "--mshb  ->  Run the calculation of main chain-side chain hydrogen bond\n\n"
               "--sshb  ->  Run the calculation of side chain-side chain hydrogen bond\n\n"
               "Examples of command:\n"
-              "> python3 cip.py ../data/1atn.pdb --inic --disu --arar --arsu --capi --hphb "
+              "> python3 cip.py ../data/1atn.pdb --intra --inic --disu --arar --arsu --capi --hphb "
               "--mmhb --mshb --sshb\n\n"
-              "> python3 cip.py ../data/1atn.pdb --inic6.5 --disu --arar4/6.5 --arsu5.5 --capi7 "
+              "> python3 cip.py ../data/1atn.pdbv --inter --inic --disu --arar --arsu --capi --hphb "
+              "--mmhb --mshb --sshb\n\n"
+              "> python3 cip.py ../data/1atn.pdb --intra --inic6.5 --disu --arar4/6.5 --arsu5.5 --capi7 "
               "--hphb4.5 --mmhb --mshb --sshb\n\n")
         return True

@@ -1,0 +1,5 @@
+Results of the intra-protein interaction calculation:
+
+
+                           Ionic interactions 6A
+ Position  Residue    Chain    Position  Residue    Chain    Distance 

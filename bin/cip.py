@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-program used to launch the intra-protein interaction calculations by
+program used to launch the intra and inter protein interaction calculations by
 checking the conformity of the command line (with the commandline.py
 package), then sending to intcalc.py the desired interactions
 """
@@ -30,12 +30,15 @@ if __name__ == "__main__":
         sys.exit("A pdb file is needed, type --help to access the program help")
     elif cl.check_command(sys.argv) == 3:
         sys.exit("No interactions calculation are given, type --help to access the program help")
+    elif cl.check_command(sys.argv) == 4:
+        sys.exit("A choice between intra or inter protein calculation is needed,"
+                 "type --help to access the program help")
 
     with open("../results/"+sys.argv[1][-8:-4]+"_res.txt", "w") as fout:
-        fout.write("Results of the intra-protein interaction calculation:")
+        fout.write("Results of the interactions calculation:")
         # create an empty result file
 
-    for arg in range(2, len(sys.argv)):
+    for arg in range(3, len(sys.argv)):
         # run all the calculation arguments of the command line
         if sys.argv[arg][0:6] in INTERAC_WITH_RANGE:
             # check if the calculation of the interaction need a distance threshold

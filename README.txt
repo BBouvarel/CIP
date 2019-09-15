@@ -18,8 +18,8 @@ Packages used :
 ========== DESCRIPTION ==========
 Program for the calculation of disulphide bridges, hydrogen bonds and
 hydrophobic, ionic, aromatic-aromatic, aromatic-sulfur, cation-pi
-interactions, based on the atoms coordinates of the PDB file of the
-protein.
+intra and inter protein interactions, based on the atoms coordinates
+of the PDB file of the protein.
 
 
 ========== USE ==========
@@ -31,7 +31,7 @@ of the program with the command (in the bin folder):
 >>>>> python3 cip.py --help <<<<<
 
 In the bin folder, run the program as follows in the bash:
->>>>> python3 cip.py ../data/file.pdb --arg1 --arg2 --argN <<<<<
+>>>>> python3 cip.py ../data/file.pdb --intra --arg1 --arg2 --argN <<<<<
 
 Will be displayed at the end of the execution and written in a file 
 named as the protein, in the results folder, the list of the interactions
@@ -47,11 +47,10 @@ protein. Will be displayed in these tables:
 ========== EXAMPLES ==========
 To launch the calculation of all of the interactions implemented with 
 the default values of distance, use the command:
->>>>> python3 cip.py ../data/2eti.pdb --inic --disu --arar --arsu --capi --hphb --mmhb --mshb --sshb <<<<<
+>>>>> python3 cip.py ../data/1atn.pdb --intra --inic --disu --arar --arsu --capi --hphb --mmhb --mshb --sshb <<<<<
 
->>>>> python3 cip.py ../data/1bta.pdb --inic --disu --arar --arsu --capi --hphb --mmhb --mshb --sshb <<<<<
+>>>>> python3 cip.py ../data/1atn.pdbv --inter --inic --disu --arar --arsu --capi --hphb --mmhb --mshb --sshb <<<<<
 
->>>>> python3 cip.py ../data/1atn.pdb --inic --disu --arar --arsu --capi --hphb --mmhb --mshb --sshb <<<<<
+>>>>> python3 cip.py ../data/1atn.pdb --intra --inic6.5 --disu --arar4/6.5 --arsu5.5 --capi7 --hphb4.5 --mmhb --mshb --sshb <<<<<
 
->>>>> python3 cip.py ../data/1atn.pdb --inic6.5 --disu --arar4/6.5 --arsu5.5 --capi7 --hphb4.5 --mmhb --mshb --sshb <<<<<
 

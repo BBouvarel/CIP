@@ -1,4 +1,76 @@
-Results of the intra-protein interaction calculation:
+Results of the interactions calculation:
+
+
+                           Ionic interactions 6A
+ Position  Residue    Chain    Position  Residue    Chain    Distance 
+    16       ASP        A         18       LYS        A        2.69   
+    18       LYS        A         72       ASP        A        2.66   
+    35       ARG        A         82       ASP        A        2.79   
+    43       ASP        A         45       LYS        A        5.31   
+   105       HIS        A        124       ASP        A        3.17   
+   142       HIS        A        166       GLU        A        4.37   
+   142       HIS        A        170       ASP        A        2.64   
+   146       HIS        A        166       GLU        A        5.81   
+   166       GLU        A        203       ARG        A        4.09   
+   166       GLU        A        231       HIS        A        4.98   
+   170       ASP        A        203       ARG        A        3.08   
+   182       LYS        A        191       ASP        A        2.88   
+   187       GLU        A        210       LYS        A        4.39   
+   215       ASP        A        219       LYS        A        5.67   
+   215       ASP        A        239       LYS        A        5.53   
+   215       ASP        A        250       HIS        A        4.42   
+   226       ASP        A        231       HIS        A        3.65   
+   262       LYS        A        302       GLU        A        2.53   
+   269       ARG        A        294       ASP        A        4.04   
+   285       ARG        A        311       ASP        A        4.20   
+
+
+                           Disulphide bridges 2.2A
+ Position  Residue    Chain    Position  Residue    Chain    Distance 
+
+
+               Aromatic-aromatic interactions 4.5-7A
+ Position  Residue    Chain    Position  Residue    Chain    Distance 
+    27       TYR        A         29       TYR        A        6.45   
+    40       PHE        A         42       TYR        A        6.91   
+    46       TYR        A         66       TYR        A        5.89   
+    66       TYR        A         55       TRP        A        5.51   
+    75       TYR        A         76       TYR        A        5.63   
+    83       TYR        A         84       TYR        A        5.28   
+    83       TYR        A        172       PHE        A        6.46   
+    83       TYR        A        179       TYR        A        5.45   
+    84       TYR        A        172       PHE        A        6.10   
+    84       TYR        A        268       TYR        A        6.52   
+    93       TYR        A        151       TYR        A        5.47   
+    93       TYR        A        115       TRP        A        5.31   
+   106       TYR        A        110       TYR        A        5.20   
+   106       TYR        A        114       PHE        A        5.63   
+   110       TYR        A        114       PHE        A        6.08   
+   130       PHE        A        193       TYR        A        5.37   
+   172       PHE        A        268       TYR        A        6.58   
+   178       PHE        A        186       TRP        A        5.51   
+   217       TYR        A        281       PHE        A        5.69   
+   242       TYR        A        186       TRP        A        5.51   
+   267       PHE        A        310       PHE        A        6.83   
+
+
+                Aromatic-sulphur interactions 5.3A
+ Position  Residue    Chain    Position  Residue    Chain    Distance 
+
+
+                       Cation-pi interactions 6A
+ Position  Residue    Chain    Position  Residue    Chain    Distance 
+    40       PHE        A        101       ARG        A        3.63   
+    42       TYR        A        101       ARG        A        5.94   
+    63       PHE        A         11       ARG        A        4.62   
+    75       TYR        A         18       LYS        A        5.14   
+    76       TYR        A         18       LYS        A        4.55   
+    76       TYR        A        182       LYS        A        4.93   
+   178       PHE        A        260       ARG        A        4.87   
+   217       TYR        A        220       ARG        A        4.20   
+   242       TYR        A        239       LYS        A        5.60   
+   251       TYR        A        219       LYS        A        5.31   
+   296       TYR        A        262       LYS        A        5.41   
 
 
                      Hydrophobic interactions 5A
@@ -236,3 +308,542 @@ Results of the intra-protein interaction calculation:
    310       PHE        A        315       VAL        A        4.46   
    310       PHE        A        313       VAL        A        4.62   
    313       VAL        A        315       VAL        A        4.20   
+
+
+                     Hydrogen bonds main-main 3.5/4A
+ Position  Residue    Chain      Atom    Position  Residue    Chain      Atom    Distance 
+    4        THR        A         N         24       TYR        A         O        2.95   
+    6        THR        A         N         4        THR        A         O        3.43   
+    24       TYR        A         N         4        THR        A         O        2.70   
+    6        THR        A         N         22       THR        A         O        3.06   
+    22       THR        A         N         6        THR        A         O        3.18   
+    8        GLY        A         N         20       ILE        A         O        2.81   
+    20       ILE        A         N         8        GLY        A         O        2.75   
+    9        VAL        A         N         60       ASN        A         O        3.41   
+    62       PHE        A         N         9        VAL        A         O        2.88   
+    10       GLY        A         N         18       LYS        A         O        2.88   
+    18       LYS        A         N         10       GLY        A         O        2.81   
+    11       ARG        A         N         62       PHE        A         O        3.20   
+    12       GLY        A         N         16       ASP        A         O        2.69   
+    14       LEU        A         N         12       GLY        A         O        3.36   
+    15       GLY        A         N         12       GLY        A         O        3.12   
+    15       GLY        A         N         13       VAL        A         O        3.39   
+    23       THR        A         N         29       TYR        A         O        3.12   
+    29       TYR        A         N         23       THR        A         O        2.77   
+    25       SER        A         N         27       TYR        A         O        2.94   
+    27       TYR        A         N         25       SER        A         O        2.60   
+    28       TYR        A         N         57       ASP        A         O        2.69   
+    57       ASP        A         N         28       TYR        A         O        2.86   
+    31       GLN        A         N         29       TYR        A         O        2.95   
+    30       LEU        A         N         55       TRP        A         O        2.95   
+    41       THR        A         N         30       LEU        A         O        3.04   
+    32       ASP        A         N         39       ILE        A         O        2.85   
+    39       ILE        A         N         32       ASP        A         O        2.94   
+    37       ASP        A         N         35       ARG        A         O        3.31   
+    38       GLY        A         N         35       ARG        A         O        2.81   
+    38       GLY        A         N         36       GLY        A         O        3.32   
+    37       ASP        A         N         97       ASN        A         O        2.89   
+   100       ILE        A         N         38       GLY        A         O        3.03   
+    40       PHE        A         N        100       ILE        A         O        2.96   
+   102       SER        A         N         40       PHE        A         O        3.17   
+    55       TRP        A         N         41       THR        A         O        2.86   
+    42       TYR        A         N        102       SER        A         O        2.75   
+   104       VAL        A         N         42       TYR        A         O        3.04   
+    43       ASP        A         N         53       SER        A         O        2.88   
+    53       SER        A         N         43       ASP        A         O        3.03   
+    44       ALA        A         N        104       VAL        A         O        2.90   
+    46       TYR        A         N         44       ALA        A         O        3.34   
+    47       ARG        A         N         44       ALA        A         O        3.01   
+    46       TYR        A         N        105       HIS        A         O        2.75   
+   107       SER        A         N         47       ARG        A         O        3.01   
+    55       TRP        A         N         53       SER        A         O        3.24   
+    56       ALA        A         N         54       LEU        A         O        3.16   
+    61       GLN        A         N         59       ASP        A         O        3.26   
+    66       TYR        A         N         64       ALA        A         O        3.27   
+    67       ASP        A         N         64       ALA        A         O        3.16   
+    67       ASP        A         N         65       SER        A         O        3.48   
+    68       ALA        A         N         65       SER        A         O        3.29   
+    70       ALA        A         N         67       ASP        A         O        3.02   
+    71       VAL        A         N         67       ASP        A         O        3.24   
+    70       ALA        A         N         68       ALA        A         O        3.40   
+    71       VAL        A         N         68       ALA        A         O        3.44   
+    72       ASP        A         N         68       ALA        A         O        3.34   
+    73       ALA        A         N         69       PRO        A         O        3.05   
+    73       ALA        A         N         70       ALA        A         O        3.46   
+    74       HIS        A         N         70       ALA        A         O        3.10   
+    75       TYR        A         N         71       VAL        A         O        2.79   
+    74       HIS        A         N         72       ASP        A         O        3.46   
+    76       TYR        A         N         72       ASP        A         O        2.91   
+    77       ALA        A         N         73       ALA        A         O        3.12   
+    78       GLY        A         N         74       HIS        A         O        3.21   
+    77       ALA        A         N         75       TYR        A         O        3.36   
+    78       GLY        A         N         75       TYR        A         O        3.04   
+    79       VAL        A         N         75       TYR        A         O        3.10   
+    79       VAL        A         N         76       TYR        A         O        3.39   
+    80       THR        A         N         76       TYR        A         O        3.10   
+    80       THR        A         N         77       ALA        A         O        3.49   
+    81       TYR        A         N         77       ALA        A         O        3.17   
+    80       THR        A         N         78       GLY        A         O        3.32   
+    81       TYR        A         N         78       GLY        A         O        3.23   
+    82       ASP        A         N         78       GLY        A         O        2.95   
+    82       ASP        A         N         79       VAL        A         O        3.26   
+    83       TYR        A         N         79       VAL        A         O        2.92   
+    83       TYR        A         N         80       THR        A         O        3.42   
+    84       TYR        A         N         80       THR        A         O        3.17   
+    83       TYR        A         N         81       TYR        A         O        3.42   
+    84       TYR        A         N         81       TYR        A         O        3.27   
+    85       LYS        A         N         81       TYR        A         O        2.93   
+    85       LYS        A         N         82       ASP        A         O        3.50   
+    86       ASN        A         N         82       ASP        A         O        2.82   
+    85       LYS        A         N         83       TYR        A         O        3.24   
+    86       ASN        A         N         83       TYR        A         O        3.34   
+    87       VAL        A         N         83       TYR        A         O        2.90   
+    88       HIS        A         N         84       TYR        A         O        3.15   
+    89       ASN        A         N         84       TYR        A         O        3.09   
+    90       ARG        A         N         84       TYR        A         O        2.90   
+    85       LYS        A         N         90       ARG        A         O        3.25   
+    89       ASN        A         N         85       LYS        A         O        3.11   
+    90       ARG        A         N         88       HIS        A         O        3.42   
+    95       GLY        A         N         91       LEU        A         O        2.86   
+    96       ASN        A         N         91       LEU        A         O        3.11   
+    97       ASN        A         N         91       LEU        A         O        3.04   
+    94       ASP        A         N         92       SER        A         O        3.45   
+    95       GLY        A         N         92       SER        A         O        3.42   
+    96       ASN        A         N         94       ASP        A         O        3.16   
+    98       ALA        A         N         96       ASN        A         O        3.38   
+    99       ALA        A         N         97       ASN        A         O        3.41   
+   120       MET        A         N        101       ARG        A         O        3.07   
+   103       SER        A         N        120       MET        A         O        3.06   
+   122       TYR        A         N        103       SER        A         O        2.82   
+   106       TYR        A         N        104       VAL        A         O        3.39   
+   105       HIS        A         N        122       TYR        A         O        3.25   
+   106       TYR        A         N        122       TYR        A         O        3.29   
+   110       TYR        A         N        108       GLN        A         O        3.25   
+   112       ASN        A         N        110       TYR        A         O        3.28   
+   125       GLY        A         N        110       TYR        A         O        3.00   
+   123       GLY        A         N        112       ASN        A         O        3.02   
+   114       PHE        A         N        121       VAL        A         O        2.98   
+   121       VAL        A         N        114       PHE        A         O        2.71   
+   116       ASN        A         N        119       GLU        A         O        2.97   
+   118       SER        A         N        116       ASN        A         O        3.27   
+   133       LEU        A         N        123       GLY        A         O        3.45   
+   126       ASP        A         N        130       PHE        A         O        3.42   
+   127       GLY        A         N        130       PHE        A         O        2.88   
+   194       THR        A         N        129       THR        A         O        2.77   
+   131       ILE        A         N        192       VAL        A         O        3.17   
+   133       LEU        A         N        131       ILE        A         O        3.05   
+   134       SER        A         N        132       PRO        A         O        3.22   
+   135       GLY        A         N        132       PRO        A         O        3.15   
+   135       GLY        A         N        133       LEU        A         O        3.15   
+   136       GLY        A         N        133       LEU        A         O        3.43   
+   136       GLY        A         N        134       SER        A         O        3.44   
+   138       ASP        A         N        136       GLY        A         O        3.28   
+   139       VAL        A         N        136       GLY        A         O        3.21   
+   140       VAL        A         N        136       GLY        A         O        3.18   
+   139       VAL        A         N        137       ILE        A         O        3.38   
+   140       VAL        A         N        137       ILE        A         O        3.43   
+   141       ALA        A         N        137       ILE        A         O        3.01   
+   142       HIS        A         N        138       ASP        A         O        2.97   
+   141       ALA        A         N        139       VAL        A         O        3.48   
+   142       HIS        A         N        139       VAL        A         O        3.27   
+   143       GLU        A         N        139       VAL        A         O        3.12   
+   142       HIS        A         N        140       VAL        A         O        3.43   
+   143       GLU        A         N        140       VAL        A         O        3.49   
+   144       LEU        A         N        140       VAL        A         O        3.13   
+   145       THR        A         N        141       ALA        A         O        2.92   
+   145       THR        A         N        142       HIS        A         O        3.40   
+   146       HIS        A         N        142       HIS        A         O        3.31   
+   145       THR        A         N        143       GLU        A         O        3.34   
+   146       HIS        A         N        143       GLU        A         O        3.10   
+   146       HIS        A         N        144       LEU        A         O        3.18   
+   147       ALA        A         N        144       LEU        A         O        2.79   
+   148       VAL        A         N        144       LEU        A         O        3.20   
+   147       ALA        A         N        145       THR        A         O        3.29   
+   148       VAL        A         N        145       THR        A         O        3.08   
+   149       THR        A         N        145       THR        A         O        3.04   
+   150       ASP        A         N        146       HIS        A         O        3.23   
+   150       ASP        A         N        147       ALA        A         O        3.31   
+   151       TYR        A         N        147       ALA        A         O        3.15   
+   150       ASP        A         N        148       VAL        A         O        3.44   
+   151       TYR        A         N        148       VAL        A         O        3.21   
+   152       THR        A         N        148       VAL        A         O        3.08   
+   151       TYR        A         N        149       THR        A         O        3.43   
+   152       THR        A         N        149       THR        A         O        3.16   
+   153       ALA        A         N        149       THR        A         O        3.38   
+   154       GLY        A         N        149       THR        A         O        2.52   
+   154       GLY        A         N        152       THR        A         O        3.36   
+   156       ILE        A         N        154       GLY        A         O        3.19   
+   156       ILE        A         N        277       PRO        A         O        2.86   
+   158       GLN        A         N        156       ILE        A         O        2.78   
+   162       GLY        A         N        156       ILE        A         O        3.09   
+   162       GLY        A         N        158       GLN        A         O        3.07   
+   159       ASN        A         N        227       ASN        A         O        2.94   
+   162       GLY        A         N        159       ASN        A         O        3.26   
+   163       ALA        A         N        159       ASN        A         O        3.26   
+   162       GLY        A         N        160       GLU        A         O        3.43   
+   163       ALA        A         N        160       GLU        A         O        3.40   
+   164       ILE        A         N        160       GLU        A         O        3.16   
+   163       ALA        A         N        161       SER        A         O        3.42   
+   164       ILE        A         N        161       SER        A         O        3.39   
+   165       ASN        A         N        161       SER        A         O        2.96   
+   165       ASN        A         N        162       GLY        A         O        3.25   
+   166       GLU        A         N        162       GLY        A         O        2.91   
+   165       ASN        A         N        163       ALA        A         O        3.42   
+   166       GLU        A         N        163       ALA        A         O        3.34   
+   167       ALA        A         N        163       ALA        A         O        2.96   
+   166       GLU        A         N        164       ILE        A         O        3.26   
+   167       ALA        A         N        164       ILE        A         O        3.24   
+   168       ILE        A         N        164       ILE        A         O        3.00   
+   168       ILE        A         N        165       ASN        A         O        3.50   
+   169       SER        A         N        165       ASN        A         O        3.27   
+   168       ILE        A         N        166       GLU        A         O        3.42   
+   169       SER        A         N        166       GLU        A         O        3.20   
+   170       ASP        A         N        166       GLU        A         O        3.07   
+   169       SER        A         N        167       ALA        A         O        3.41   
+   170       ASP        A         N        167       ALA        A         O        3.19   
+   171       ILE        A         N        167       ALA        A         O        2.71   
+   170       ASP        A         N        168       ILE        A         O        3.35   
+   171       ILE        A         N        168       ILE        A         O        3.24   
+   172       PHE        A         N        168       ILE        A         O        2.82   
+   173       GLY        A         N        169       SER        A         O        2.85   
+   173       GLY        A         N        170       ASP        A         O        3.35   
+   174       THR        A         N        170       ASP        A         O        3.04   
+   173       GLY        A         N        171       ILE        A         O        3.44   
+   174       THR        A         N        171       ILE        A         O        3.32   
+   175       LEU        A         N        171       ILE        A         O        3.01   
+   174       THR        A         N        172       PHE        A         O        3.47   
+   176       VAL        A         N        172       PHE        A         O        3.20   
+   177       GLU        A         N        173       GLY        A         O        3.12   
+   176       VAL        A         N        174       THR        A         O        3.36   
+   177       GLU        A         N        174       THR        A         O        3.07   
+   178       PHE        A         N        174       THR        A         O        2.93   
+   178       PHE        A         N        175       LEU        A         O        3.32   
+   179       TYR        A         N        175       LEU        A         O        2.78   
+   178       PHE        A         N        176       VAL        A         O        3.45   
+   179       TYR        A         N        176       VAL        A         O        3.29   
+   180       ALA        A         N        176       VAL        A         O        2.96   
+   181       ASN        A         N        177       GLU        A         O        3.03   
+   182       LYS        A         N        177       GLU        A         O        3.26   
+   180       ALA        A         N        178       PHE        A         O        3.39   
+   181       ASN        A         N        178       PHE        A         O        2.90   
+   182       LYS        A         N        180       ALA        A         O        3.37   
+   183       ASN        A         N        181       ASN        A         O        3.24   
+   205       MET        A         N        186       TRP        A         O        2.67   
+   188       ILE        A         N        203       ARG        A         O        2.79   
+   202       LEU        A         N        188       ILE        A         O        2.84   
+   191       ASP        A         N        189       GLY        A         O        2.96   
+   192       VAL        A         N        189       GLY        A         O        3.07   
+   193       TYR        A         N        189       GLY        A         O        2.98   
+   196       GLY        A         N        194       THR        A         O        2.85   
+   197       ILE        A         N        194       THR        A         O        2.72   
+   200       ASP        A         N        198       SER        A         O        3.10   
+   209       ALA        A         N        207       ASP        A         O        3.00   
+   210       LYS        A         N        207       ASP        A         O        3.28   
+   210       LYS        A         N        208       PRO        A         O        3.07   
+   211       TYR        A         N        208       PRO        A         O        3.42   
+   213       ASP        A         N        208       PRO        A         O        3.22   
+   209       ALA        A         N        213       ASP        A         O        3.36   
+   211       TYR        A         N        209       ALA        A         O        3.11   
+   212       GLY        A         N        209       ALA        A         O        2.96   
+   215       ASP        A         N        213       ASP        A         O        3.47   
+   236       ILE        A         N        214       PRO        A         O        3.41   
+   218       SER        A         N        216       HIS        A         O        3.32   
+   219       LYS        A         N        216       HIS        A         O        3.03   
+   217       TYR        A         N        313       VAL        A         O        2.79   
+   219       LYS        A         N        217       TYR        A         O        3.36   
+   220       ARG        A         N        217       TYR        A         O        3.38   
+   221       TYR        A         N        219       LYS        A         O        3.48   
+   228       GLY        A         N        224       THR        A         O        3.45   
+   227       ASN        A         N        225       GLN        A         O        3.26   
+   228       GLY        A         N        225       GLN        A         O        2.71   
+   229       GLY        A         N        225       GLN        A         O        2.70   
+   228       GLY        A         N        226       ASP        A         O        2.96   
+   229       GLY        A         N        226       ASP        A         O        2.89   
+   230       VAL        A         N        226       ASP        A         O        2.99   
+   231       HIS        A         N        229       GLY        A         O        3.29   
+   232       ILE        A         N        229       GLY        A         O        2.98   
+   233       ASN        A         N        229       GLY        A         O        2.70   
+   234       SER        A         N        232       ILE        A         O        3.16   
+   235       GLY        A         N        232       ILE        A         O        3.23   
+   235       GLY        A         N        233       ASN        A         O        3.07   
+   236       ILE        A         N        233       ASN        A         O        3.14   
+   236       ILE        A         N        234       SER        A         O        3.20   
+   237       ILE        A         N        234       SER        A         O        3.22   
+   238       ASN        A         N        234       SER        A         O        3.05   
+   239       LYS        A         N        235       GLY        A         O        2.94   
+   240       ALA        A         N        236       ILE        A         O        3.20   
+   240       ALA        A         N        237       ILE        A         O        3.28   
+   241       ALA        A         N        237       ILE        A         O        2.87   
+   241       ALA        A         N        238       ASN        A         O        3.37   
+   242       TYR        A         N        238       ASN        A         O        2.95   
+   241       ALA        A         N        239       LYS        A         O        3.45   
+   242       TYR        A         N        239       LYS        A         O        3.34   
+   243       LEU        A         N        239       LYS        A         O        3.01   
+   243       LEU        A         N        240       ALA        A         O        3.35   
+   244       ILE        A         N        240       ALA        A         O        3.15   
+   244       ILE        A         N        241       ALA        A         O        3.42   
+   245       SER        A         N        241       ALA        A         O        3.24   
+   245       SER        A         N        242       TYR        A         O        3.34   
+   246       GLN        A         N        242       TYR        A         O        2.86   
+   245       SER        A         N        243       LEU        A         O        3.21   
+   247       GLY        A         N        243       LEU        A         O        2.69   
+   258       ILE        A         N        244       ILE        A         O        2.67   
+   259       GLY        A         N        245       SER        A         O        2.77   
+   248       GLY        A         N        255       VAL        A         O        2.94   
+   255       VAL        A         N        248       GLY        A         O        2.72   
+   250       HIS        A         N        253       VAL        A         O        2.88   
+   252       GLY        A         N        250       HIS        A         O        3.21   
+   253       VAL        A         N        250       HIS        A         O        3.01   
+   253       VAL        A         N        251       TYR        A         O        3.28   
+   261       ASP        A         N        259       GLY        A         O        3.46   
+   263       LEU        A         N        259       GLY        A         O        3.24   
+   263       LEU        A         N        260       ARG        A         O        3.45   
+   264       GLY        A         N        260       ARG        A         O        3.00   
+   264       GLY        A         N        261       ASP        A         O        3.33   
+   265       LYS        A         N        261       ASP        A         O        3.01   
+   265       LYS        A         N        262       LYS        A         O        3.30   
+   266       ILE        A         N        262       LYS        A         O        2.82   
+   265       LYS        A         N        263       LEU        A         O        3.32   
+   266       ILE        A         N        263       LEU        A         O        3.46   
+   267       PHE        A         N        263       LEU        A         O        3.03   
+   268       TYR        A         N        264       GLY        A         O        3.16   
+   269       ARG        A         N        265       LYS        A         O        3.24   
+   268       TYR        A         N        266       ILE        A         O        3.39   
+   269       ARG        A         N        266       ILE        A         O        3.39   
+   270       ALA        A         N        266       ILE        A         O        2.92   
+   269       ARG        A         N        267       PHE        A         O        3.48   
+   270       ALA        A         N        267       PHE        A         O        3.21   
+   271       LEU        A         N        267       PHE        A         O        2.88   
+   271       LEU        A         N        268       TYR        A         O        3.43   
+   272       THR        A         N        268       TYR        A         O        2.88   
+   271       LEU        A         N        269       ARG        A         O        3.42   
+   272       THR        A         N        269       ARG        A         O        3.43   
+   273       GLN        A         N        269       ARG        A         O        2.90   
+   272       THR        A         N        270       ALA        A         O        3.42   
+   274       TYR        A         N        270       ALA        A         O        2.87   
+   275       LEU        A         N        270       ALA        A         O        2.82   
+   278       THR        A         N        276       THR        A         O        3.05   
+   279       SER        A         N        276       THR        A         O        3.42   
+   280       ASN        A         N        278       THR        A         O        3.49   
+   282       SER        A         N        280       ASN        A         O        3.16   
+   283       GLN        A         N        280       ASN        A         O        2.97   
+   284       LEU        A         N        280       ASN        A         O        2.91   
+   283       GLN        A         N        281       PHE        A         O        3.38   
+   284       LEU        A         N        281       PHE        A         O        3.12   
+   285       ARG        A         N        281       PHE        A         O        3.08   
+   284       LEU        A         N        282       SER        A         O        3.50   
+   285       ARG        A         N        282       SER        A         O        3.48   
+   286       ALA        A         N        282       SER        A         O        3.33   
+   285       ARG        A         N        283       GLN        A         O        3.36   
+   286       ALA        A         N        283       GLN        A         O        3.33   
+   287       ALA        A         N        283       GLN        A         O        2.99   
+   286       ALA        A         N        284       LEU        A         O        3.46   
+   287       ALA        A         N        284       LEU        A         O        3.24   
+   288       ALA        A         N        284       LEU        A         O        2.80   
+   287       ALA        A         N        285       ARG        A         O        3.48   
+   288       ALA        A         N        285       ARG        A         O        3.37   
+   289       VAL        A         N        285       ARG        A         O        3.04   
+   290       GLN        A         N        286       ALA        A         O        3.01   
+   290       GLN        A         N        287       ALA        A         O        3.46   
+   291       SER        A         N        287       ALA        A         O        2.98   
+   290       GLN        A         N        288       ALA        A         O        3.39   
+   291       SER        A         N        288       ALA        A         O        3.19   
+   292       ALA        A         N        288       ALA        A         O        2.97   
+   292       ALA        A         N        289       VAL        A         O        3.40   
+   293       THR        A         N        289       VAL        A         O        2.80   
+   293       THR        A         N        290       GLN        A         O        3.37   
+   294       ASP        A         N        290       GLN        A         O        3.07   
+   295       LEU        A         N        291       SER        A         O        3.16   
+   295       LEU        A         N        292       ALA        A         O        3.50   
+   296       TYR        A         N        292       ALA        A         O        2.81   
+   297       GLY        A         N        293       THR        A         O        2.82   
+   299       THR        A         N        297       GLY        A         O        3.01   
+   300       SER        A         N        297       GLY        A         O        2.86   
+   304       ALA        A         N        300       SER        A         O        3.27   
+   303       VAL        A         N        301       GLN        A         O        3.35   
+   304       ALA        A         N        301       GLN        A         O        2.98   
+   305       SER        A         N        301       GLN        A         O        2.80   
+   304       ALA        A         N        302       GLU        A         O        3.27   
+   305       SER        A         N        302       GLU        A         O        3.32   
+   306       VAL        A         N        302       GLU        A         O        3.10   
+   305       SER        A         N        303       VAL        A         O        3.47   
+   306       VAL        A         N        303       VAL        A         O        3.40   
+   307       LYS        A         N        303       VAL        A         O        3.23   
+   308       GLN        A         N        304       ALA        A         O        3.25   
+   309       ALA        A         N        305       SER        A         O        3.02   
+   308       GLN        A         N        306       VAL        A         O        3.49   
+   310       PHE        A         N        306       VAL        A         O        3.13   
+   309       ALA        A         N        307       LYS        A         O        3.47   
+   310       PHE        A         N        307       LYS        A         O        3.39   
+   311       ASP        A         N        307       LYS        A         O        2.94   
+   310       PHE        A         N        308       GLN        A         O        3.38   
+   311       ASP        A         N        308       GLN        A         O        2.98   
+   312       ALA        A         N        308       GLN        A         O        2.54   
+   311       ASP        A         N        309       ALA        A         O        3.29   
+   312       ALA        A         N        309       ALA        A         O        3.13   
+   313       VAL        A         N        309       ALA        A         O        3.29   
+   312       ALA        A         N        310       PHE        A         O        3.48   
+   313       VAL        A         N        310       PHE        A         O        3.28   
+   314       GLY        A         N        310       PHE        A         O        3.16   
+   315       VAL        A         N        310       PHE        A         O        3.00   
+   313       VAL        A         N        311       ASP        A         O        3.22   
+   314       GLY        A         N        311       ASP        A         O        3.14   
+   315       VAL        A         N        313       VAL        A         O        3.47   
+   316       LYS        A         N        314       GLY        A         O        3.43   
+
+
+                     Hydrogen bonds main-side 3.5/4A
+ Position  Residue    Chain      Atom    Position  Residue    Chain      Atom    Distance 
+    31       GLN        A        NE2        1        ILE        A         O        3.38   
+    25       SER        A         OG        2        THR        A         O        3.12   
+    60       ASN        A        ND2        7        VAL        A         O        3.32   
+    13       VAL        A         N         72       ASP        A        OD1       2.85   
+    74       HIS        A        NE2        21       ASN        A         O        2.74   
+    23       THR        A        OG1        31       GLN        A         O        2.77   
+    34       THR        A         N         32       ASP        A        OD2       3.19   
+    35       ARG        A         NE        78       GLY        A         O        3.38   
+    36       GLY        A         N         81       TYR        A         OH       3.41   
+    45       LYS        A         N         43       ASP        A        OD1       3.04   
+   103       SER        A         OG        51       PRO        A         O        2.47   
+    59       ASP        A         N         57       ASP        A        OD2       3.04   
+    60       ASN        A         N         57       ASP        A        OD2       2.87   
+    61       GLN        A         N         59       ASP        A        OD1       3.17   
+    63       PHE        A         N         67       ASP        A        OD2       3.25   
+    64       ALA        A         N         67       ASP        A        OD2       3.05   
+   105       HIS        A        NE2        66       TYR        A         O        2.43   
+   134       SER        A         OG        69       PRO        A         O        2.79   
+    80       THR        A        OG1        76       TYR        A         O        2.87   
+    86       ASN        A        ND2        82       ASP        A         O        3.18   
+    90       ARG        A         NE        92       SER        A         O        3.41   
+    90       ARG        A         NE        93       TYR        A         O        3.21   
+    90       ARG        A        NH2        93       TYR        A         O        2.89   
+    92       SER        A         OG        98       ALA        A         O        2.71   
+    93       TYR        A         OH        99       ALA        A         O        2.99   
+    96       ASN        A         N         94       ASP        A        OD2       2.79   
+    97       ASN        A         N         94       ASP        A        OD2       3.27   
+    98       ALA        A         N         94       ASP        A        OD2       3.10   
+   126       ASP        A         N        111       ASN        A        OD1       3.11   
+   115       TRP        A         N        143       GLU        A        OE1       3.45   
+   118       SER        A         N        116       ASN        A        OD1       2.85   
+   119       GLU        A         N        116       ASN        A        OD1       2.91   
+   144       LEU        A         N        120       MET        A         SD       3.82   
+   128       GLN        A         N        126       ASP        A        OD2       2.60   
+   129       THR        A         N        126       ASP        A        OD2       2.62   
+   182       LYS        A         NZ       135       GLY        A         O        3.29   
+   189       GLY        A         N        138       ASP        A        OD1       3.12   
+   189       GLY        A         N        138       ASP        A        OD2       3.49   
+   145       THR        A        OG1       141       ALA        A         O        2.71   
+   169       SER        A         OG       142       HIS        A         O        2.79   
+   146       HIS        A         N        169       SER        A         OG       3.46   
+   152       THR        A        OG1       148       VAL        A         O        3.11   
+   165       ASN        A        ND2       155       LEU        A         O        3.15   
+   161       SER        A         OG       156       ILE        A         O        3.27   
+   161       SER        A         OG       158       GLN        A         O        3.23   
+   281       PHE        A         N        160       GLU        A        OE1       2.90   
+   174       THR        A        OG1       170       ASP        A         O        3.12   
+   185       ASP        A         N        177       GLU        A        OE2       3.29   
+   187       GLU        A         N        185       ASP        A        OD2       2.87   
+   201       SER        A         N        211       TYR        A         OH       3.09   
+   201       SER        A         OG       203       ARG        A         O        2.94   
+   207       ASP        A         N        204       SER        A         OG       3.15   
+   204       SER        A         OG       207       ASP        A         O        3.45   
+   239       LYS        A         NZ       206       SER        A         O        2.75   
+   209       ALA        A         N        207       ASP        A        OD1       3.40   
+   250       HIS        A        NE2       215       ASP        A         O        2.78   
+   218       SER        A         N        216       HIS        A        ND1       3.15   
+   220       ARG        A         NE       217       TYR        A         O        2.99   
+   220       ARG        A        NH2       217       TYR        A         O        3.19   
+   221       TYR        A         N        233       ASN        A        OD1       3.07   
+   233       ASN        A        ND2       221       TYR        A         O        2.90   
+   224       THR        A         N        221       TYR        A         OH       3.29   
+   225       GLN        A         N        221       TYR        A         OH       3.14   
+   230       VAL        A         N        226       ASP        A        OD2       3.31   
+   231       HIS        A         N        226       ASP        A        OD2       2.81   
+   234       SER        A         OG       231       HIS        A         O        3.33   
+   260       ARG        A         N        245       SER        A         OG       3.16   
+   256       VAL        A         N        308       GLN        A        OE1       3.28   
+   305       SER        A         OG       256       VAL        A         O        2.37   
+   272       THR        A        OG1       268       TYR        A         O        2.67   
+   270       ALA        A         N        291       SER        A         OG       3.23   
+   276       THR        A         N        279       SER        A         OG       3.09   
+   279       SER        A         OG       276       THR        A         O        3.40   
+   280       ASN        A         N        283       GLN        A        OE1       2.88   
+   316       LYS        A         NZ       282       SER        A         O        3.16   
+   285       ARG        A        NH1       307       LYS        A         O        3.48   
+   285       ARG        A        NH1       315       VAL        A         O        3.03   
+   291       SER        A         OG       287       ALA        A         O        2.91   
+   293       THR        A        OG1       289       VAL        A         O        2.93   
+   300       SER        A         OG       297       GLY        A         O        2.50   
+   303       VAL        A         N        300       SER        A         OG       3.28   
+   308       GLN        A        NE2       304       ALA        A         O        2.73   
+
+
+                     Hydrogen bonds side-side 3.5/4A
+ Position  Residue    Chain      Atom    Position  Residue    Chain      Atom    Distance 
+    5        SER        A         OG        33       ASN        A        OD1       3.25   
+    6        THR        A        OG1        22       THR        A        OG1       3.47   
+    18       LYS        A         NZ        16       ASP        A        OD1       3.38   
+    18       LYS        A         NZ        72       ASP        A        OD2       2.66   
+    18       LYS        A         NZ        76       TYR        A         OH       3.38   
+    22       THR        A        OG1        6        THR        A        OG1       3.47   
+    22       THR        A        OG1        60       ASN        A        OD1       2.61   
+    23       THR        A        OG1        33       ASN        A        OD1       2.75   
+    33       ASN        A        ND2        31       GLN        A        OE1       2.84   
+    35       ARG        A        NH1        32       ASP        A        OD1       2.76   
+    34       THR        A        OG1        32       ASP        A        OD2       2.56   
+    35       ARG        A         NE        82       ASP        A        OD1       2.78   
+    41       THR        A        OG1        74       HIS        A        ND1       2.98   
+   101       ARG        A         NE        42       TYR        A         OH       3.06   
+    66       TYR        A         OH        43       ASP        A        OD1       2.63   
+    45       LYS        A         NZ        53       SER        A         OG       2.96   
+    74       HIS        A        ND1        41       THR        A        OG1       2.98   
+    97       ASN        A        ND2        81       TYR        A         OH       2.59   
+    83       TYR        A         OH        88       HIS        A        NE2       2.86   
+    84       TYR        A         OH       145       THR        A        OG1       2.67   
+    86       ASN        A        ND2       179       TYR        A         OH       3.22   
+    88       HIS        A        NE2        83       TYR        A         OH       2.86   
+    90       ARG        A        NH1       268       TYR        A         OH       2.91   
+   103       SER        A         OG       119       GLU        A        OE2       2.87   
+   105       HIS        A        ND1       124       ASP        A        OD1       3.05   
+   111       ASN        A        ND2       126       ASP        A        OD1       2.96   
+   115       TRP        A        NE1       150       ASP        A        OD2       2.75   
+   118       SER        A         OG       116       ASN        A        OD1       3.26   
+   122       TYR        A         OH       120       MET        A         SD       3.53   
+   129       THR        A        OG1       126       ASP        A        OD1       3.07   
+   142       HIS        A        ND1       170       ASP        A        OD2       2.64   
+   142       HIS        A        NE2       146       HIS        A        NE2       3.25   
+   142       HIS        A        NE2       166       GLU        A        OE2       3.15   
+   145       THR        A        OG1        84       TYR        A         OH       2.67   
+   146       HIS        A        ND1       165       ASN        A        OD1       2.79   
+   146       HIS        A        ND1       169       SER        A         OG       3.45   
+   146       HIS        A        NE2       142       HIS        A        NE2       3.25   
+   146       HIS        A        NE2       166       GLU        A        OE1       2.95   
+   157       TYR        A         OH       166       GLU        A        OE1       2.59   
+   157       TYR        A         OH       231       HIS        A        NE2       3.28   
+   217       TYR        A         OH       160       GLU        A        OE2       2.40   
+   169       SER        A         OG       146       HIS        A        ND1       3.45   
+   203       ARG        A         NE       170       ASP        A        OD1       2.97   
+   238       ASN        A        ND2       170       ASP        A        OD1       2.93   
+   174       THR        A        OG1       205       MET        A         SD       3.28   
+   182       LYS        A         NZ       191       ASP        A        OD2       2.88   
+   204       SER        A         OG       187       GLU        A        OE1       2.86   
+   206       SER        A         OG       187       GLU        A        OE1       3.34   
+   201       SER        A         OG       187       GLU        A        OE2       2.91   
+   194       THR        A        OG1       200       ASP        A        OD1       2.87   
+   204       SER        A         OG       206       SER        A         OG       3.31   
+   206       SER        A         OG       204       SER        A         OG       3.31   
+   251       TYR        A         OH       215       ASP        A        OD1       3.04   
+   216       HIS        A        ND1       218       SER        A         OG       2.96   
+   218       SER        A         OG       216       HIS        A        ND1       2.96   
+   219       LYS        A         NZ       251       TYR        A         OH       2.80   
+   231       HIS        A        ND1       226       ASP        A        OD1       2.73   
+   231       HIS        A        NE2       157       TYR        A         OH       3.28   
+   249       THR        A        OG1       254       SER        A         OG       2.83   
+   254       SER        A         OG       249       THR        A        OG1       2.83   
+   262       LYS        A         NZ       302       GLU        A        OE2       2.53   
+   269       ARG        A        NH1       274       TYR        A         OH       3.23   
+   269       ARG        A        NH1       294       ASP        A        OD2       2.30   
+   274       TYR        A         OH       294       ASP        A        OD2       2.48   
+   280       ASN        A        ND2       283       GLN        A        OE1       3.36   
+   285       ARG        A        NH1       311       ASP        A        OD1       2.75   
+   305       SER        A         OG       301       GLN        A        OE1       3.37   
