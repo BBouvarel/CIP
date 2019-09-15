@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 """
-    package containing the atom class in which are stored the atoms of
-    the PDB file that meet the criteria for a specific interaction
+package containing the atom class in which are stored the atoms of
+the PDB file that meet the criteria for a specific interaction
 """
 
 __author__ = "Bertrand Bouvarel"
@@ -30,3 +30,27 @@ class Atom:
         self.x = float(x)
         self.y = float(y)
         self.z = float(z)
+
+    def check_non_id(self, ato2):
+        """
+        function allowing the calculation of the distance of two atoms
+
+        :param ato2: object of the class atom compared
+        :return: boolean to know if the two atoms are identical
+        """
+        if self.position != ato2.position or self.chain != ato2.chain:
+            return True
+        else:
+            return False
+
+    def check_non_id_hbond_side(self, ato2):
+        """
+        function allowing the calculation of the distance of two atoms
+
+        :param ato2: object of the class atom compared
+        :return: boolean to know if the two atoms are identical
+        """
+        if self.position != ato2.position or self.chain != ato2.chain or self.name != ato2.name:
+            return True
+        else:
+            return False

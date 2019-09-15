@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
 """
-    program used to launch the intra-protein interaction calculations by
-    checking the conformity of the command line (with the commandline.py
-    package), then sending to intcalc.py the desired interactions
+program used to launch the intra-protein interaction calculations by
+checking the conformity of the command line (with the commandline.py
+package), then sending to intcalc.py the desired interactions
 """
 
 __author__ = "Bertrand Bouvarel"

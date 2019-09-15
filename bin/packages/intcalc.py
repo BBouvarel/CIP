@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 """
-    package containing all functions, calculations, display
-    and writing of intra-protein interactions of a PDB file
+package containing all functions, calculations, display
+and writing of intra-protein interactions of a PDB file
 """
 
 __author__ = "Bertrand Bouvarel"
@@ -13,38 +13,11 @@ import statistics as stat
 import packages.atom as atom
 
 
-def calc_range(elem1, elem2):
-    """
-    function allowing the calculation of the distance of two atoms
-
-    :param elem1: object of the class atom
-    :param elem2: object of the class atom
-    :return: distance between two atoms
-    """
-    dist = math.sqrt((elem2.x-elem1.x)**2 +
-                     (elem2.y-elem1.y)**2 +
-                     (elem2.z-elem1.z)**2)
-    return dist
-
-
-def calc_centroid(atoms):
-    """
-    function calculating the centroid of a phenyl group of an aromatic residue
-
-    :param atoms: a list of objects of the atom class corresponding to the six atoms of a phenyl
-    :return: an object containing the information about the phenyl and his centroid
-    """
-    return atom.Atom("Phenyl", atoms[0].position, atoms[0].residue, atoms[0].chain,
-                     stat.mean([atoms[0].x, atoms[1].x, atoms[2].x,
-                                atoms[3].x, atoms[4].x, atoms[5].x]),
-                     stat.mean([atoms[0].y, atoms[1].y, atoms[2].y,
-                                atoms[3].y, atoms[4].y, atoms[5].y]),
-                     stat.mean([atoms[0].z, atoms[1].z, atoms[2].z,
-                                atoms[3].z, atoms[4].z, atoms[5].z]))
-
-
 def add_to_list(line, list):
     """
+    function used to add an atom to the list of those meeting specific criteria,
+    used to clarify the code
+
     :param line: line of the pdb file containing the element of interest
     :param list: list containing the objects of class atom
     :return: list of objects of class atom with the new element added
@@ -82,6 +55,55 @@ def parsing(pdb, name, res):
     return elements
 
 
+def calc_range(elem1, elem2):
+    """
+    function allowing the calculation of the distance of two atoms
+
+    :param elem1: object of the class atom
+    :param elem2: object of the class atom
+    :return: distance between two atoms
+    """
+    dist = math.sqrt((elem2.x-elem1.x)**2 +
+                     (elem2.y-elem1.y)**2 +
+                     (elem2.z-elem1.z)**2)
+    return dist
+
+
+def calc_centroid(atoms):
+    """
+    function calculating the centroid of a phenyl group of an aromatic residue
+
+    :param atoms: a list of objects of the atom class corresponding to the six atoms of a phenyl
+    :return: an object containing the information about the phenyl and his centroid
+    """
+    return atom.Atom("Phenyl", atoms[0].position, atoms[0].residue, atoms[0].chain,
+                     stat.mean([atoms[0].x, atoms[1].x, atoms[2].x,
+                                atoms[3].x, atoms[4].x, atoms[5].x]),
+                     stat.mean([atoms[0].y, atoms[1].y, atoms[2].y,
+                                atoms[3].y, atoms[4].y, atoms[5].y]),
+                     stat.mean([atoms[0].z, atoms[1].z, atoms[2].z,
+                                atoms[3].z, atoms[4].z, atoms[5].z]))
+
+
+def check_criteria(elem1, elem2, pos_prev, dist, def_range):
+    """
+    function checking the criteria for hydrophobic, ionic, aromatic-sulphur
+    and cation-pi interactions, used to clarify the code
+
+    :param elem1: object of class atom
+    :param elem2: object of class atom
+    :param pos_prev: list of pairs of element already printed
+    :param dist: distance between the two elements
+    :param def_range: threshold distance
+    :return: a boolean to know if the criteria are respected
+    """
+    if dist <= def_range and \
+            ([elem1.position, elem2.position] not in pos_prev) and elem1.check_non_id(elem2):
+        return True
+    else:
+        return False
+
+
 def hydrophobic(arg, def_range):
     """
     function calculating the hydrophobic interactions
@@ -99,10 +121,7 @@ def hydrophobic(arg, def_range):
         for elem2 in hphb[i + 1:]:
             # check the pairs of elements
             dist = calc_range(elem1, elem2)
-            if dist <= def_range and \
-                    ([elem1.position, elem2.position] not in pos_prev) and \
-                    (elem1.position != elem2.position or
-                     elem1.chain != elem2.chain):
+            if check_criteria(elem1, elem2, pos_prev, dist, def_range):
                 print_pos_res_ch_dis(arg[1][-8:-4], elem1.position, elem1.residue, elem1.chain,
                                      elem2.position, elem2.residue, elem2.chain, dist)
                 pos_prev.append([elem1.position, elem2.position])
@@ -125,10 +144,7 @@ def ionic(arg, def_range):
         for elem2 in inic[i + 1:]:
             # check the pairs of elements
             dist = calc_range(elem1, elem2)
-            if dist <= def_range and \
-                    ([elem1.position, elem2.position] not in pos_prev) and \
-                    (elem1.position != elem2.position or
-                     elem1.chain != elem2.chain):
+            if check_criteria(elem1, elem2, pos_prev, dist, def_range):
                 if (elem1.residue in pos_res and elem2.residue in neg_res) or \
                         (elem1.residue in neg_res and elem2.residue in pos_res):
                     # binding of a positive res with a negative res only
@@ -139,6 +155,7 @@ def ionic(arg, def_range):
 
 
 def aro_aro(arg, def_range):
+    # non ou nuance (if arar)
     """
     function calculating the aromatic-aromatic interactions
 
@@ -159,8 +176,7 @@ def aro_aro(arg, def_range):
             dist = calc_range(aro1, aro2)
             if def_range[0] <= dist <= def_range[1] and \
                     ([aro1.position, aro2.position] not in pos_prev) and \
-                    (aro1.position != aro2.position or
-                     aro1.chain != aro2.chain):
+                    aro1.check_non_id(aro2):
                 print_pos_res_ch_dis(arg[1][-8:-4], aro1.position, aro1.residue, aro1.chain,
                                      aro2.position, aro2.residue, aro2.chain, dist)
                 pos_prev.append([aro1.position, aro2.position])
@@ -187,10 +203,7 @@ def aro_sul(arg, def_range):
         for sul in sul_all:
             # check the aromatic-sulphur pairs
             dist = calc_range(aro, sul)
-            if dist <= def_range and \
-                    ([aro.position, sul.position] not in pos_prev) and \
-                    (aro.position != sul.position or
-                     aro.chain != sul.chain):
+            if check_criteria(aro, sul, pos_prev, dist, def_range):
                 print_pos_res_ch_dis(arg[1][-8:-4], aro.position, aro.residue, aro.chain,
                                      sul.position, sul.residue, sul.chain, dist)
                 pos_prev.append([aro.position, sul.position])
@@ -216,10 +229,7 @@ def cation_pi(arg, def_range):
         for ato_cat in cation_all:
             # check the positive atom-aromatic pairs
             dist = calc_range(aro, ato_cat)
-            if dist <= def_range and \
-                    ([aro.position, ato_cat.position] not in pos_prev) and \
-                    (aro.position != ato_cat.position or
-                     aro.chain != ato_cat.chain):
+            if check_criteria(aro, ato_cat, pos_prev, dist, def_range):
                 print_pos_res_ch_dis(arg[1][-8:-4], aro.position, aro.residue, aro.chain,
                                      ato_cat.position, ato_cat.residue, ato_cat.chain, dist)
                 pos_prev.append([aro.position, ato_cat.position])
@@ -228,6 +238,7 @@ def cation_pi(arg, def_range):
 
 
 def disulphide(arg):
+    # non
     """
     function calculating the disulphide bridges
 
@@ -246,6 +257,7 @@ def disulphide(arg):
 
 
 def mm_hbond(arg):
+    # non
     """
     function calculating the main chain-main chain hydrogen bonds
 
@@ -266,8 +278,7 @@ def mm_hbond(arg):
             dist = calc_range(donor, acceptor)
             if dist <= 3.5 and \
                     ([donor.position, acceptor.position] not in pos_prev) and \
-                    (donor.position != acceptor.position or
-                     donor.chain != acceptor.chain) and \
+                    donor.check_non_id(acceptor) and \
                     abs(donor.position - acceptor.position) >= 2 and \
                     donor.residue != "PRO":
                 print_hydrogen_res(arg[1][-8:-4], donor.position, donor.residue, donor.chain,
@@ -278,6 +289,7 @@ def mm_hbond(arg):
 
 
 def ms_hbond(arg):
+    # non
     """
     function calculating the main chain-side chain hydrogen bonds
 
@@ -335,9 +347,7 @@ def ms_hbond(arg):
                 if dist <= def_range and \
                         ([donor.position, acceptor.position] not in pos_prev or
                          donor.name != acceptor.name) and \
-                        (donor.position != acceptor.position or
-                         donor.chain != acceptor.chain or
-                         donor.name != acceptor.name) and \
+                        donor.check_non_id_hbond_side(acceptor) and \
                         abs(donor.position - acceptor.position) >= 2:
                     print_hydrogen_res(arg[1][-8:-4], donor.position, donor.residue, donor.chain,
                                        donor.name, acceptor.position, acceptor.residue,
@@ -348,6 +358,7 @@ def ms_hbond(arg):
 
 
 def ss_hbond(arg):
+    # non
     """
     function calculating the main side-side chain hydrogen bonds
 
@@ -385,9 +396,7 @@ def ss_hbond(arg):
             dist = calc_range(donor, acceptor)
             if dist <= def_range and \
                     ([donor.position, acceptor.position] not in pos_prev) and \
-                    (donor.position != acceptor.position or
-                     donor.chain != acceptor.chain or
-                     donor.name != acceptor.name) and \
+                    donor.check_non_id_hbond_side(acceptor) and \
                     abs(donor.position - acceptor.position) >= 2:
                 print_hydrogen_res(arg[1][-8:-4], donor.position, donor.residue, donor.chain,
                                    donor.name, acceptor.position, acceptor.residue, acceptor.chain,
@@ -420,9 +429,7 @@ def print_header(pdb_name, title, range):
 
 def print_pos_res_ch_dis(pdb_name, pos1, res1, chain1, pos2, res2, chain2, dist):
     """
-    function printing and writing in the res filethe the result's table
-
-    :param: the elements to print
+    function printing and writing in the res file the result's table
     """
     with open("../results/" + pdb_name + "_res.txt", "a") as fout:
         # write in the result file
@@ -460,8 +467,6 @@ def print_hydrogen_header(pdb_name, title, range):
 def print_hydrogen_res(pdb_name, posd, resd, chaind, named, posa, resa, chaina, namea, dist):
     """
     function printing and writing in the res file the the result's table
-
-    :param: the elements to print
     """
     with open("../results/" + pdb_name + "_res.txt", "a") as fout:
         # write in the result file

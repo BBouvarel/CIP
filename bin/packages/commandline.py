@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 """
-    package for checking errors in the command line passed to cip.py,
-    and assigning threshold distance values if necessary
+package for checking errors in the command line passed to cip.py,
+and assigning threshold distance values if necessary
 """
 
 __author__ = "Bertrand Bouvarel"
