@@ -100,10 +100,10 @@ def check_help(argv):
               "--mshb  ->  Run the calculation of main chain-side chain hydrogen bond\n\n"
               "--sshb  ->  Run the calculation of side chain-side chain hydrogen bond\n\n"
               "Examples of command:\n"
-              "> python3 cip.py ../data/1atn.pdb --intra --inic --disu --arar --arsu --capi --hphb "
-              "--mmhb --mshb --sshb\n\n"
-              "> python3 cip.py ../data/1atn.pdbv --inter --inic --disu --arar --arsu --capi --hphb "
-              "--mmhb --mshb --sshb\n\n"
-              "> python3 cip.py ../data/1atn.pdb --intra --inic6.5 --disu --arar4/6.5 --arsu5.5 --capi7 "
-              "--hphb4.5 --mmhb --mshb --sshb\n\n")
+              "> python3 cip.py ../data/1atn.pdb --intra --inic --disu --arar --arsu --capi "
+              "--hphb --mmhb --mshb --sshb\n\n"
+              "> python3 cip.py ../data/1atn.pdbv --inter --inic --disu --arar --arsu --capi "
+              "--hphb --mmhb --mshb --sshb\n\n"
+              "> python3 cip.py ../data/1atn.pdb --intra --inic6.5 --disu --arar4/6.5 --arsu5.5 "
+              "--capi7 --hphb4.5 --mmhb --mshb --sshb\n\n")
         return True

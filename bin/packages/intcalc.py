@@ -289,9 +289,10 @@ def mm_hbond(arg):
             if check_criteria(arg[2], donor, acceptor, pos_prev, dist, 3.5):
                 if abs(donor.position - acceptor.position) >= 2 and donor.residue != "PRO":
                     print_hydrogen_res(arg[1][-8:-4], donor.position, donor.residue, donor.chain,
-                                       donor.name, acceptor.position, acceptor.residue, acceptor.chain,
-                                       acceptor.name, dist)
-                    pos_prev.append([donor.position, acceptor.position, donor.chain, acceptor.chain])
+                                       donor.name, acceptor.position, acceptor.residue,
+                                       acceptor.chain, acceptor.name, dist)
+                    pos_prev.append([donor.position, acceptor.position,
+                                     donor.chain, acceptor.chain])
     print("\n")
 
 
@@ -351,20 +352,22 @@ def ms_hbond(arg):
                     def_range = 4
                 dist = calc_range(donor, acceptor)
                 if dist <= def_range and \
-                        ([donor.position, acceptor.position, donor.chain, acceptor.chain] not in pos_prev or
-                         donor.name != acceptor.name) and \
+                        ([donor.position, acceptor.position, donor.chain, acceptor.chain]
+                         not in pos_prev or donor.name != acceptor.name) and \
                         donor.check_non_id_hbond_side(acceptor) and \
                         abs(donor.position - acceptor.position) >= 2:
                     if arg[2] == "--intra" and elem1.chain == elem2.chain:
-                        print_hydrogen_res(arg[1][-8:-4], donor.position, donor.residue, donor.chain,
-                                           donor.name, acceptor.position, acceptor.residue,
-                                           acceptor.chain, acceptor.name, dist)
-                        pos_prev.append([donor.position, acceptor.position, donor.chain, acceptor.chain])
+                        print_hydrogen_res(arg[1][-8:-4], donor.position, donor.residue,
+                                           donor.chain, donor.name, acceptor.position,
+                                           acceptor.residue, acceptor.chain, acceptor.name, dist)
+                        pos_prev.append([donor.position, acceptor.position, donor.chain,
+                                         acceptor.chain])
                     elif arg[2] == "--inter" and elem1.chain != elem2.chain:
-                        print_hydrogen_res(arg[1][-8:-4], donor.position, donor.residue, donor.chain,
-                                           donor.name, acceptor.position, acceptor.residue,
-                                           acceptor.chain, acceptor.name, dist)
-                        pos_prev.append([donor.position, acceptor.position, donor.chain, acceptor.chain])
+                        print_hydrogen_res(arg[1][-8:-4], donor.position, donor.residue,
+                                           donor.chain, donor.name, acceptor.position,
+                                           acceptor.residue, acceptor.chain, acceptor.name, dist)
+                        pos_prev.append([donor.position, acceptor.position, donor.chain,
+                                         acceptor.chain])
                     else:
                         continue
                 prev_do_ac = (donor, acceptor)
@@ -408,19 +411,22 @@ def ss_hbond(arg):
                 def_range = 4
             dist = calc_range(donor, acceptor)
             if dist <= def_range and \
-                    ([donor.position, acceptor.position, donor.chain, acceptor.chain] not in pos_prev) and \
+                    ([donor.position, acceptor.position, donor.chain, acceptor.chain]
+                     not in pos_prev) and \
                     donor.check_non_id_hbond_side(acceptor) and \
                     abs(donor.position - acceptor.position) >= 2:
                 if arg[2] == "--intra" and elem1.chain == elem2.chain:
                     print_hydrogen_res(arg[1][-8:-4], donor.position, donor.residue, donor.chain,
                                        donor.name, acceptor.position, acceptor.residue,
                                        acceptor.chain, acceptor.name, dist)
-                    pos_prev.append([donor.position, acceptor.position, donor.chain, acceptor.chain])
+                    pos_prev.append([donor.position, acceptor.position,
+                                     donor.chain, acceptor.chain])
                 elif arg[2] == "--inter" and elem1.chain != elem2.chain:
                     print_hydrogen_res(arg[1][-8:-4], donor.position, donor.residue, donor.chain,
                                        donor.name, acceptor.position, acceptor.residue,
                                        acceptor.chain, acceptor.name, dist)
-                    pos_prev.append([donor.position, acceptor.position, donor.chain, acceptor.chain])
+                    pos_prev.append([donor.position, acceptor.position,
+                                     donor.chain, acceptor.chain])
                 else:
                     continue
     print("\n")
