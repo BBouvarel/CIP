@@ -14,7 +14,7 @@ def check_command(argv):
     function to detect errors in the command line
 
     :param argv: list of the elements of the command line
-    :return: a value depending of the error
+    :return: an int depending of the error
     """
     if len(argv) < 2:
         return 1
@@ -39,6 +39,7 @@ def set_val_default(arg_input, arg_name, def_range):
     range = def_range
     if len(arg_input) > len(arg_name):
         if arg_name == "--arar":
+            # two distance threshold values to make an interval
             try:
                 # check if the two values are numbers and not a letters or a symbols
                 val1 = arg_input[len(arg_name):].split("/")[0]
@@ -53,9 +54,9 @@ def set_val_default(arg_input, arg_name, def_range):
                 print("The values with the argument", arg_name, "are invalid")
                 range = -1
         else:
+            # only one threshold value needed
             try:
                 # check if the value with the arg is a number and not a letter or a symbol
-                #float(arg_input[len(arg_name):])
                 range = float(arg_input[len(arg_name):])
             except ValueError:
                 print("The value with the argument", arg_name, "is invalid")

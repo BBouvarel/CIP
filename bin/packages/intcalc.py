@@ -63,9 +63,7 @@ def calc_range(elem1, elem2):
     :param elem2: object of the class atom
     :return: distance between two atoms
     """
-    dist = math.sqrt((elem2.x-elem1.x)**2 +
-                     (elem2.y-elem1.y)**2 +
-                     (elem2.z-elem1.z)**2)
+    dist = math.sqrt((elem2.x-elem1.x)**2 + (elem2.y-elem1.y)**2 + (elem2.z-elem1.z)**2)
     return dist
 
 

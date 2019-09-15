@@ -33,7 +33,7 @@ class Atom:
 
     def check_non_id(self, ato2):
         """
-        function allowing the calculation of the distance of two atoms
+        function checking if the atom in the argument is identical to the this atom
 
         :param ato2: object of the class atom compared
         :return: boolean to know if the two atoms are identical
@@ -45,7 +45,8 @@ class Atom:
 
     def check_non_id_hbond_side(self, ato2):
         """
-        function allowing the calculation of the distance of two atoms
+        function checking if the atom in the argument is identical to the this atom
+        version for m-s and s-s hbond
 
         :param ato2: object of the class atom compared
         :return: boolean to know if the two atoms are identical
