@@ -5,7 +5,7 @@ package containing the atom class in which are stored the atoms of
 the PDB file that meet the criteria for a specific interaction
 """
 
-__author__ = "Bertrand Bouvarel"
+__author__ = "Bertrand BOUVAREL"
 __date__ = "2019/09"
 
 

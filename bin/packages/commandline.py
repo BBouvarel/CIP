@@ -5,7 +5,7 @@ package for checking errors in the command line passed to cip.py,
 and assigning threshold distance values if necessary
 """
 
-__author__ = "Bertrand Bouvarel"
+__author__ = "Bertrand BOUVAREL"
 __date__ = "2019/09"
 
 

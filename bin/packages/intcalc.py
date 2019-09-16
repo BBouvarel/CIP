@@ -5,7 +5,7 @@ package containing all functions, calculations, display
 and writing of protein interactions of a PDB file
 """
 
-__author__ = "Bertrand Bouvarel"
+__author__ = "Bertrand BOUVAREL"
 __date__ = "2019/09"
 
 import math

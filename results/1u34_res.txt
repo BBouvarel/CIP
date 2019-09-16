@@ -1,0 +1,126 @@
+Results of the interactions calculation:
+
+
+                           Ionic interactions 6A
+ Position  Residue    Chain    Position  Residue    Chain    Distance 
+    65       ASP        A        101       ARG        A        4.70   
+   128       LYS        A        130       ASP        A        4.00   
+
+
+                           Disulphide bridges 2.2A
+ Position  Residue    Chain    Position  Residue    Chain    Distance 
+    45       CYS        A         70       CYS        A        1.99   
+    60       CYS        A        103       CYS        A        1.99   
+    84       CYS        A        118       CYS        A        2.00   
+
+
+               Aromatic-aromatic interactions 4.5-7A
+ Position  Residue    Chain    Position  Residue    Chain    Distance 
+    88       PHE        A         93       TYR        A        6.85   
+    71       TRP        A        109       TRP        A        6.56   
+
+
+                Aromatic-sulphur interactions 5.3A
+ Position  Residue    Chain    Position  Residue    Chain    Distance 
+   109       TRP        A         60       CYS        A        4.94   
+   109       TRP        A        103       CYS        A        3.47   
+
+
+                       Cation-pi interactions 6A
+ Position  Residue    Chain    Position  Residue    Chain    Distance 
+    71       TRP        A         82       ARG        A        4.87   
+    71       TRP        A        101       ARG        A        5.46   
+   109       TRP        A        101       ARG        A        5.51   
+
+
+                     Hydrophobic interactions 5A
+ Position  Residue    Chain    Position  Residue    Chain    Distance 
+    41       LEU        A         64       LEU        A        4.37   
+    50       ILE        A         59       TYR        A        4.88   
+    50       ILE        A         56       PRO        A        4.55   
+    56       PRO        A         57       TYR        A        4.65   
+    56       PRO        A         59       TYR        A        4.74   
+    57       TYR        A         59       TYR        A        4.58   
+    59       TYR        A         76       PRO        A        4.71   
+    67       ILE        A        113       VAL        A        3.95   
+    71       TRP        A         72       PRO        A        3.59   
+    71       TRP        A        109       TRP        A        4.48   
+    71       TRP        A         80       VAL        A        4.72   
+    71       TRP        A        113       VAL        A        4.62   
+    71       TRP        A         99       ALA        A        3.81   
+    75       ALA        A         76       PRO        A        4.87   
+    75       ALA        A         78       ALA        A        4.28   
+    80       VAL        A        109       TRP        A        4.07   
+    85       PRO        A         88       PHE        A        4.38   
+    85       PRO        A         93       TYR        A        3.81   
+    88       PHE        A         91       ILE        A        3.70   
+    88       PHE        A         93       TYR        A        4.88   
+    99       ALA        A        113       VAL        A        4.28   
+    99       ALA        A        115       TYR        A        4.66   
+   113       VAL        A        115       TYR        A        4.94   
+   121       ILE        A        122       LEU        A        4.95   
+
+
+                     Hydrogen bonds main-main 3.5/4A
+ Position  Residue    Chain      Atom    Position  Residue    Chain      Atom    Distance 
+    28       ARG        A         N         26       PHE        A         O        3.24   
+    32       ASP        A         N         30       HIS        A         O        3.22   
+    37       GLY        A         N         35       ASP        A         O        2.85   
+    39       THR        A         N         37       GLY        A         O        3.22   
+    42       GLU        A         N         40       LEU        A         O        3.37   
+    44       TYR        A         N         42       GLU        A         O        2.76   
+    48       THR        A         N         46       HIS        A         O        3.17   
+    49       THR        A         N         47       ARG        A         O        3.37   
+    59       TYR        A         N         57       TYR        A         O        3.43   
+    60       CYS        A         N         74       SER        A         O        2.86   
+    74       SER        A         N         60       CYS        A         O        3.37   
+    63       THR        A         N         61       ASN        A         O        3.26   
+    71       TRP        A         N         63       THR        A         O        3.32   
+    67       ILE        A         N         65       ASP        A         O        2.50   
+    68       GLY        A         N         66       GLN        A         O        3.35   
+    69       THR        A         N         67       ILE        A         O        2.66   
+    70       CYS        A         N         68       GLY        A         O        2.79   
+    74       SER        A         N         72       PRO        A         O        3.42   
+    78       ALA        A         N         75       ALA        A         O        3.46   
+    78       ALA        A         N         76       PRO        A         O        3.14   
+    77       GLY        A         N        103       CYS        A         O        2.58   
+    77       GLY        A         N        104       LEU        A         O        2.76   
+    78       ALA        A         N        103       CYS        A         O        3.14   
+   103       CYS        A         N         78       ALA        A         O        2.86   
+    81       GLU        A         N         79       LEU        A         O        3.42   
+    80       VAL        A         N        101       ARG        A         O        2.60   
+    82       ARG        A         N         99       ALA        A         O        2.69   
+    84       CYS        A         N         82       ARG        A         O        3.10   
+    99       ALA        A         N         82       ARG        A         O        3.47   
+    88       PHE        A         N         86       GLU        A         O        2.76   
+    93       TYR        A         N         91       ILE        A         O        3.31   
+   100       TYR        A         N        114       ASN        A         O        3.13   
+   110       ALA        A         N        102       GLU        A         O        3.21   
+   104       LEU        A         N        108       THR        A         O        2.70   
+   106       ASN        A         N        104       LEU        A         O        3.14   
+   107       GLY        A         N        104       LEU        A         O        3.18   
+   118       CYS        A         N        116       SER        A         O        3.40   
+   121       ILE        A         N        119       GLU        A         O        3.36   
+   123       ASP        A         N        121       ILE        A         O        2.91   
+
+
+                     Hydrogen bonds main-side 3.5/4A
+ Position  Residue    Chain      Atom    Position  Residue    Chain      Atom    Distance 
+    43       GLN        A        NE2        40       LEU        A         O        3.14   
+    43       GLN        A        NE2        41       LEU        A         O        3.22   
+    48       THR        A         N         73       GLN        A        OE1       2.70   
+    60       CYS        A         SG        75       ALA        A         O        3.93   
+    60       CYS        A         SG       108       THR        A         O        3.60   
+   109       TRP        A        NE1        61       ASN        A         O        3.36   
+    73       GLN        A         N         62       THR        A        OG1       3.11   
+    71       TRP        A        NE1        69       THR        A         O        3.06   
+    74       SER        A         OG        72       PRO        A         O        2.97   
+   103       CYS        A         SG        75       ALA        A         O        3.96   
+    82       ARG        A        NH1        96       THR        A         O        3.45   
+   114       ASN        A        ND2       100       TYR        A         O        3.41   
+   103       CYS        A         SG       108       THR        A         O        3.38   
+
+
+                     Hydrogen bonds side-side 3.5/4A
+ Position  Residue    Chain      Atom    Position  Residue    Chain      Atom    Distance 
+   112       ARG        A        NH1        66       GLN        A        OE1       2.77   

@@ -6,7 +6,7 @@ checking the conformity of the command line (with the commandline.py
 package), then sending to intcalc.py the desired interactions
 """
 
-__author__ = "Bertrand Bouvarel"
+__author__ = "Bertrand BOUVAREL"
 __date__ = "2019/09"
 
 
