@@ -26,13 +26,13 @@ of the PDB file of the protein.
 
 ========== USE ==========
 Before running the program, please check that you have the main script
-(cip.py) in in the bin folder, as well as the packages (atom.py,
+(cip.py) in in the src folder, as well as the packages (atom.py,
 commandline.py, intcalc.py), in the packages folder. A file in PDB format
 is required for launching the program. It is possible to access the help
-of the program with the command (in the bin folder):
+of the program with the command (in the src folder):
 >>>>> python3 cip.py --help <<<<<
 
-In the bin folder, run the program as follows in the bash:
+In the src folder, run the program as follows in the bash:
 >>>>> python3 cip.py ../data/file.pdb --intra --arg1 --arg2 --argN <<<<<
 
 Will be displayed at the end of the execution and written in a file 
