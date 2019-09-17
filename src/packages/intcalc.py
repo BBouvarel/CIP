@@ -39,6 +39,7 @@ def parsing(pdb, name, res):
     :return: list of objects of class atom that respect the conditions
     """
     elements = []
+    # futur list of atoms which meet the criteria
     with open(pdb, "r") as finput:
         for line in finput:
             if line[0:6].strip() == "ATOM":
@@ -85,7 +86,7 @@ def calc_centroid(atoms):
                                 atoms[3].coor_z, atoms[4].coor_z, atoms[5].coor_z]))
 
 
-def check_criteria(intra_inter, elem1, elem2, pos_prev, dist, def_range):
+def check_criteria(intra_inter, elem1, elem2, prev_pos, dist, def_range):
     """
     function checking the criteria for hydrophobic, ionic, aromatic-aromatic,
     aromatic-sulphur and cation-pi interactions, used to clarify the code
@@ -93,19 +94,18 @@ def check_criteria(intra_inter, elem1, elem2, pos_prev, dist, def_range):
     :param intra_inter: choice to calculate intra or inter protein interactions
     :param elem1: object of class atom
     :param elem2: object of class atom
-    :param pos_prev: list of pairs of element already printed
+    :param prev_pos: list of pairs of element already printed
     :param dist: distance between the two elements
     :param def_range: threshold distance
     :return: a boolean to know if the criteria are respected
     """
     if dist <= def_range and \
-            ([elem1.position, elem2.position, elem1.chain, elem2.chain] not in pos_prev) and \
+            ([elem1.position, elem2.position, elem1.chain, elem2.chain] not in prev_pos) and \
             elem1.check_non_id(elem2):
         if intra_inter == "--intra" and elem1.chain == elem2.chain:
             return True
-        elif intra_inter == "--inter" and elem1.chain != elem2.chain:
+        if intra_inter == "--inter" and elem1.chain != elem2.chain:
             return True
-        return False
     return False
 
 
@@ -122,15 +122,16 @@ def hydrophobic(arg, def_range):
                     "CZ", "CZ2", "CZ3", "SD"],
                    ["ALA", "VAL", "LEU", "ILE", "MET", "PHE", "TRP", "PRO", "TYR"])
 
-    pos_prev = []
+    prev_pos = []
     for i, elem1 in enumerate(hphb):
         for elem2 in hphb[i + 1:]:
             # check the pairs of elements
             dist = calc_range(elem1, elem2)
-            if check_criteria(arg[2], elem1, elem2, pos_prev, dist, def_range):
+            if check_criteria(arg[2], elem1, elem2, prev_pos, dist, def_range):
                 print_pos_res_ch_dis(arg[1][-8:-4], elem1.position, elem1.residue, elem1.chain,
                                      elem2.position, elem2.residue, elem2.chain, dist)
-                pos_prev.append([elem1.position, elem2.position, elem1.chain, elem2.chain])
+                prev_pos.append([elem1.position, elem2.position, elem1.chain, elem2.chain])
+                # save the combinations of positions and chains already seen
     print("\n")
 
 
@@ -144,21 +145,22 @@ def ionic(arg, def_range):
     print_header(arg[1][-8:-4], "Ionic interactions", def_range)
     inic = parsing(arg[1], ["ND1", "NE", "NH1", "NH2", "NZ", "NE2", "OD2", "OE2"],
                    ["ARG", "LYS", "HIS", "ASP", "GLU"])
-    # NE and NH1 because of the displacement of the electron in the guanidinium group of the arginine
-    pos_prev = []
+    # NE and NH1: displacement of the electron in the guanidinium group of the arginine
+    prev_pos = []
     pos_res = ["ARG", "LYS", "HIS"]
     neg_res = ["ASP", "GLU"]
     for i, elem1 in enumerate(inic):
         for elem2 in inic[i + 1:]:
             # check the pairs of elements
             dist = calc_range(elem1, elem2)
-            if check_criteria(arg[2], elem1, elem2, pos_prev, dist, def_range):
+            if check_criteria(arg[2], elem1, elem2, prev_pos, dist, def_range):
                 if (elem1.residue in pos_res and elem2.residue in neg_res) or \
                         (elem1.residue in neg_res and elem2.residue in pos_res):
                     # binding of a positive res with a negative res only
                     print_pos_res_ch_dis(arg[1][-8:-4], elem1.position, elem1.residue, elem1.chain,
                                          elem2.position, elem2.residue, elem2.chain, dist)
-                    pos_prev.append([elem1.position, elem2.position, elem1.chain, elem2.chain])
+                    prev_pos.append([elem1.position, elem2.position, elem1.chain, elem2.chain])
+                    # save the combinations of positions and chains already seen
     print("\n")
 
 
@@ -172,20 +174,23 @@ def aro_aro(arg, def_range):
     print_header(arg[1][-8:-4], "Aromatic-aromatic interactions", def_range)
     arar = parsing(arg[1], ["CD1", "CD2", "CE1", "CE2", "CG", "CZ"], ["PHE", "TYR"])
     arar = arar + parsing(arg[1], ["CD2", "CE2", "CE3", "CH2", "CZ2", "CZ3"], ["TRP"])
-    pos_prev = []
+    prev_pos = []
     i = 0
     while i < len(arar):
         aro1 = calc_centroid(arar[i:(i + 6)])
+        # six atoms to build a phenyl
         j = i + 6
         while j < len(arar):
             # check the pairs of aromatic rings
             aro2 = calc_centroid(arar[j:(j + 6)])
             dist = calc_range(aro1, aro2)
-            if check_criteria(arg[2], aro1, aro2, pos_prev, dist, def_range[1]):
+            if check_criteria(arg[2], aro1, aro2, prev_pos, dist, def_range[1]):
                 if def_range[0] <= dist:
+                    # distance have to be in an interval
                     print_pos_res_ch_dis(arg[1][-8:-4], aro1.position, aro1.residue, aro1.chain,
                                          aro2.position, aro2.residue, aro2.chain, dist)
-                    pos_prev.append([aro1.position, aro2.position, aro1.chain, aro2.chain])
+                    prev_pos.append([aro1.position, aro2.position, aro1.chain, aro2.chain])
+                    # save the combinations of positions and chains already seen
             j += 6
         i += 6
     print("\n")
@@ -202,17 +207,18 @@ def aro_sul(arg, def_range):
     aro_all = parsing(arg[1], ["CD1", "CD2", "CE1", "CE2", "CG", "CZ"], ["PHE", "TYR"])
     aro_all = aro_all + parsing(arg[1], ["CD2", "CE2", "CE3", "CH2", "CZ2", "CZ3"], ["TRP"])
     sul_all = parsing(arg[1], ["SD", "SG"], ["CYS", "MET"])
-    pos_prev = []
+    prev_pos = []
     i = 0
     while i < len(aro_all):
         aro = calc_centroid(aro_all[i:(i + 6)])
         for sul in sul_all:
             # check the aromatic-sulphur pairs
             dist = calc_range(aro, sul)
-            if check_criteria(arg[2], aro, sul, pos_prev, dist, def_range):
+            if check_criteria(arg[2], aro, sul, prev_pos, dist, def_range):
                 print_pos_res_ch_dis(arg[1][-8:-4], aro.position, aro.residue, aro.chain,
                                      sul.position, sul.residue, sul.chain, dist)
-                pos_prev.append([aro.position, sul.position, aro.chain, sul.chain])
+                prev_pos.append([aro.position, sul.position, aro.chain, sul.chain])
+                # save the combinations of positions and chains already seen
         i += 6
     print("\n")
 
@@ -228,17 +234,18 @@ def cation_pi(arg, def_range):
     aro_all = parsing(arg[1], ["CD1", "CD2", "CE1", "CE2", "CG", "CZ"], ["PHE", "TYR"])
     aro_all = aro_all + parsing(arg[1], ["CD2", "CE2", "CE3", "CH2", "CZ2", "CZ3"], ["TRP"])
     cation_all = parsing(arg[1], ["NH2", "NZ"], ["ARG", "LYS"])
-    pos_prev = []
+    prev_pos = []
     i = 0
     while i < len(aro_all):
         aro = calc_centroid(aro_all[i:(i + 6)])
         for ato_cat in cation_all:
             # check the positive atom-aromatic pairs
             dist = calc_range(aro, ato_cat)
-            if check_criteria(arg[2], aro, ato_cat, pos_prev, dist, def_range):
+            if check_criteria(arg[2], aro, ato_cat, prev_pos, dist, def_range):
                 print_pos_res_ch_dis(arg[1][-8:-4], aro.position, aro.residue, aro.chain,
                                      ato_cat.position, ato_cat.residue, ato_cat.chain, dist)
-                pos_prev.append([aro.position, ato_cat.position, aro.chain, ato_cat.chain])
+                prev_pos.append([aro.position, ato_cat.position, aro.chain, ato_cat.chain])
+                # save the combinations of positions and chains already seen
         i += 6
     print("\n")
 
@@ -252,8 +259,8 @@ def disulphide(arg):
     print_header(arg[1][-8:-4], "Disulphide bridges", 2.2)
     sulphur = parsing(arg[1], ["SG"], ["CYS"])
     for i, elem1 in enumerate(sulphur):
-        # check the pair of sulphur
         for elem2 in sulphur[i + 1:]:
+            # check the pairs of sulphur
             dist = calc_range(elem1, elem2)
             if dist <= 2.2:
                 if arg[2] == "--intra" and elem1.chain == elem2.chain:
@@ -274,7 +281,7 @@ def mm_hbond(arg):
     :param arg: the list of arguments of the command line
     """
     print_hydrogen_header(arg[1][-8:-4], "Hydrogen bonds main-main", [3.5, 4])
-    pos_prev = []
+    prev_pos = []
     mmhb = parsing(arg[1], ["N", "O", "OXT"], [])
     for i, elem1 in enumerate(mmhb):
         for elem2 in mmhb[i + 1:]:
@@ -288,13 +295,16 @@ def mm_hbond(arg):
             else:
                 continue
             dist = calc_range(donor, acceptor)
-            if check_criteria(arg[2], donor, acceptor, pos_prev, dist, 3.5):
+            if check_criteria(arg[2], donor, acceptor, prev_pos, dist, 3.5):
                 if abs(donor.position - acceptor.position) >= 2 and donor.residue != "PRO":
+                    # no hydrogen bond between two successive residues and proline can't be donor
                     print_hydrogen_res(arg[1][-8:-4], donor.position, donor.residue, donor.chain,
                                        donor.name, acceptor.position, acceptor.residue,
                                        acceptor.chain, acceptor.name, dist)
-                    pos_prev.append([donor.position, acceptor.position,
+                    prev_pos.append([donor.position, acceptor.position,
                                      donor.chain, acceptor.chain])
+                    # save the combinations of positions and chains already seen
+
     print("\n")
 
 
@@ -314,7 +324,7 @@ def ms_hbond(arg):
     side_acc = {"ASN": ["OD1"], "ASP": ["OD1", "OD2"], "GLN": ["OE1"],
                 "GLU": ["OE1", "OE2"], "HIS": ["ND1", "NE2"], "MET": ["SD"], "SER": ["OG"],
                 "THR": ["OG1"], "TYR": ["OH"]}
-    pos_prev = []
+    prev_pos = []
     donor = None
     acceptor = None
     prev_do_ac = (None, None)
@@ -329,7 +339,7 @@ def ms_hbond(arg):
                          elem2.name in side_acc[elem2.residue]):
                     donor = elem1
                     acceptor = elem2
-                elif (elem1.name == "O" or elem1.name == "OXT") and \
+                elif elem1.name in ["O", "OXT"] and \
                         (elem2.residue in side_don.keys() and
                          elem2.name in side_don[elem2.residue]):
                     donor = elem2
@@ -340,7 +350,7 @@ def ms_hbond(arg):
                          elem1.name in side_acc[elem1.residue]):
                     donor = elem2
                     acceptor = elem1
-                elif (elem2.name == "O" or elem2.name == "OXT") and \
+                elif (elem2.name in ["O", "OXT"]) and \
                         (elem1.residue in side_don.keys() and
                          elem1.name in side_don[elem1.residue]):
                     donor = elem1
@@ -348,31 +358,41 @@ def ms_hbond(arg):
             else:
                 continue
             if donor is not None and acceptor is not None and (donor, acceptor) != prev_do_ac:
+                # prev_do_ac to avoid replicates
                 if donor.residue == "PRO" and donor.name == "N":
+                    # nitrogen of the main chain of proline can't be donor
                     continue
                 if donor.name == "SG" or acceptor.name == "SD":
                     def_range = 4
                 dist = calc_range(donor, acceptor)
                 if dist <= def_range and \
                         ([donor.position, acceptor.position, donor.chain, acceptor.chain]
-                         not in pos_prev or donor.name != acceptor.name) and \
-                        donor.check_non_id_hbond_side(acceptor) and \
-                        abs(donor.position - acceptor.position) >= 2:
+                         not in prev_pos or donor.name != acceptor.name) and \
+                        donor.check_non_id_hbond_side(acceptor):
+                    if donor.chain == acceptor.chain and\
+                            abs(donor.position - acceptor.position) < 2:
+                        # no hydrogen bond between two successive residues
+                        continue
                     if arg[2] == "--intra" and elem1.chain == elem2.chain:
                         print_hydrogen_res(arg[1][-8:-4], donor.position, donor.residue,
                                            donor.chain, donor.name, acceptor.position,
                                            acceptor.residue, acceptor.chain, acceptor.name, dist)
-                        pos_prev.append([donor.position, acceptor.position, donor.chain,
+                        prev_pos.append([donor.position, acceptor.position, donor.chain,
                                          acceptor.chain])
+                        # save the combinations of positions and chains already seen
+                        prev_do_ac = (donor, acceptor)
+                        # prevents duplicates
                     elif arg[2] == "--inter" and elem1.chain != elem2.chain:
                         print_hydrogen_res(arg[1][-8:-4], donor.position, donor.residue,
                                            donor.chain, donor.name, acceptor.position,
                                            acceptor.residue, acceptor.chain, acceptor.name, dist)
-                        pos_prev.append([donor.position, acceptor.position, donor.chain,
+                        prev_pos.append([donor.position, acceptor.position, donor.chain,
                                          acceptor.chain])
+                        # save the combinations of positions and chains already seen
+                        prev_do_ac = (donor, acceptor)
+                        # prevents duplicates
                     else:
                         continue
-                prev_do_ac = (donor, acceptor)
     print("\n")
 
 
@@ -393,11 +413,12 @@ def ss_hbond(arg):
                 "THR": ["OG1"], "TYR": ["OH"]}
     donor = None
     acceptor = None
-    pos_prev = []
+    prev_pos = []
     sshb = parsing(arg[1], side_all, [])
     for elem1 in sshb:
         for elem2 in sshb:
             # check the donor-acceptor pairs
+            # somme donor can also be acceptor so elem 2 in all sshb
             def_range = 3.5
             if (elem1.residue in poss_don.keys() and elem1.name in poss_don[elem1.residue]) and \
                     (elem2.residue in poss_acc.keys() and elem2.name in poss_acc[elem2.residue]):
@@ -414,20 +435,23 @@ def ss_hbond(arg):
             dist = calc_range(donor, acceptor)
             if dist <= def_range and \
                     ([donor.position, acceptor.position, donor.chain, acceptor.chain]
-                     not in pos_prev) and \
-                    donor.check_non_id_hbond_side(acceptor) and \
-                    abs(donor.position - acceptor.position) >= 2:
+                     not in prev_pos) and \
+                    donor.check_non_id_hbond_side(acceptor):
+                if donor.chain == acceptor.chain and \
+                        abs(donor.position - acceptor.position) < 2:
+                    # no hydrogen bond between two successive residues
+                    continue
                 if arg[2] == "--intra" and elem1.chain == elem2.chain:
                     print_hydrogen_res(arg[1][-8:-4], donor.position, donor.residue, donor.chain,
                                        donor.name, acceptor.position, acceptor.residue,
                                        acceptor.chain, acceptor.name, dist)
-                    pos_prev.append([donor.position, acceptor.position,
+                    prev_pos.append([donor.position, acceptor.position,
                                      donor.chain, acceptor.chain])
                 elif arg[2] == "--inter" and elem1.chain != elem2.chain:
                     print_hydrogen_res(arg[1][-8:-4], donor.position, donor.residue, donor.chain,
                                        donor.name, acceptor.position, acceptor.residue,
                                        acceptor.chain, acceptor.name, dist)
-                    pos_prev.append([donor.position, acceptor.position,
+                    prev_pos.append([donor.position, acceptor.position,
                                      donor.chain, acceptor.chain])
                 else:
                     continue
