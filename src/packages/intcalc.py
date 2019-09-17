@@ -105,10 +105,8 @@ def check_criteria(intra_inter, elem1, elem2, pos_prev, dist, def_range):
             return True
         elif intra_inter == "--inter" and elem1.chain != elem2.chain:
             return True
-        else:
-            return False
-    else:
         return False
+    return False
 
 
 def hydrophobic(arg, def_range):
@@ -146,7 +144,7 @@ def ionic(arg, def_range):
     print_header(arg[1][-8:-4], "Ionic interactions", def_range)
     inic = parsing(arg[1], ["ND1", "NE", "NH1", "NH2", "NZ", "NE2", "OD2", "OE2"],
                    ["ARG", "LYS", "HIS", "ASP", "GLU"])
-    # NE and NH1 because of the displacement of the electron in the guanidium group of the arginine
+    # NE and NH1 because of the displacement of the electron in the guanidinium group of the arginine
     pos_prev = []
     pos_res = ["ARG", "LYS", "HIS"]
     neg_res = ["ASP", "GLU"]
