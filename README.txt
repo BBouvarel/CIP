@@ -1,6 +1,7 @@
 ========== CREATION OF AN INTERACTION CALCULATION PROGRAM ==========
 Author : Bertrand Bouvarel
 Promotion : M2BI 2019-2020
+last update: september 2019
 Python version : Python 3.7.4
 Based on the article : Tina, K. G., Bhadra, R., & Srinivasan, N. (2007). 
 		       PIC: Protein Interactions Calculator. Nucleic

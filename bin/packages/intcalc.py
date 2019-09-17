@@ -142,7 +142,8 @@ def ionic(arg, def_range):
     :param def_range: the threshold distance, criterion of the interaction
     """
     print_header(arg[1][-8:-4], "Ionic interactions", def_range)
-    inic = parsing(arg[1], ["ND1", "NH2", "NZ", "OD2", "OE2"], ["ARG", "LYS", "HIS", "ASP", "GLU"])
+    inic = parsing(arg[1], ["ND1", "NE", "NH1", "NH2", "NZ", "NE2", "OD2", "OE2"], ["ARG", "LYS", "HIS", "ASP", "GLU"])
+    # NE and NH1 because of the displacement of the electron in the guanidium group of the arginine
     pos_prev = []
     pos_res = ["ARG", "LYS", "HIS"]
     neg_res = ["ASP", "GLU"]
