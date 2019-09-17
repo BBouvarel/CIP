@@ -1,35 +1,43 @@
 Results of the interactions calculation:
 
 
-                           Ionic interactions 6A
+                           Ionic interactions (<= 6A)
  Position  Residue    Chain    Position  Residue    Chain    Distance 
     16       ASP        A         18       LYS        A        2.69   
     18       LYS        A         72       ASP        A        2.66   
-    35       ARG        A         82       ASP        A        2.79   
+    32       ASP        A         35       ARG        A        5.44   
+    32       ASP        A         74       HIS        A        5.77   
+    35       ARG        A         82       ASP        A        3.59   
     43       ASP        A         45       LYS        A        5.31   
+    43       ASP        A        105       HIS        A        5.81   
    105       HIS        A        124       ASP        A        3.17   
    142       HIS        A        166       GLU        A        4.37   
    142       HIS        A        170       ASP        A        2.64   
+   142       HIS        A        143       GLU        A        4.87   
+   143       GLU        A        146       HIS        A        5.56   
    146       HIS        A        166       GLU        A        5.81   
-   166       GLU        A        203       ARG        A        4.09   
+   160       GLU        A        220       ARG        A        4.97   
+   166       GLU        A        203       ARG        A        5.21   
    166       GLU        A        231       HIS        A        4.98   
-   170       ASP        A        203       ARG        A        3.08   
+   170       ASP        A        203       ARG        A        3.72   
    182       LYS        A        191       ASP        A        2.88   
    187       GLU        A        210       LYS        A        4.39   
+   203       ARG        A        213       ASP        A        5.90   
    215       ASP        A        219       LYS        A        5.67   
    215       ASP        A        239       LYS        A        5.53   
    215       ASP        A        250       HIS        A        4.42   
    226       ASP        A        231       HIS        A        3.65   
+   260       ARG        A        261       ASP        A        4.99   
    262       LYS        A        302       GLU        A        2.53   
-   269       ARG        A        294       ASP        A        4.04   
-   285       ARG        A        311       ASP        A        4.20   
+   269       ARG        A        294       ASP        A        4.10   
+   285       ARG        A        311       ASP        A        4.40   
 
 
-                           Disulphide bridges 2.2A
+                           Disulphide bridges (<= 2.2A)
  Position  Residue    Chain    Position  Residue    Chain    Distance 
 
 
-               Aromatic-aromatic interactions 4.5-7A
+               Aromatic-aromatic interactions (between 4.5-7A)
  Position  Residue    Chain    Position  Residue    Chain    Distance 
     27       TYR        A         29       TYR        A        6.45   
     40       PHE        A         42       TYR        A        6.91   
@@ -54,11 +62,11 @@ Results of the interactions calculation:
    267       PHE        A        310       PHE        A        6.83   
 
 
-                Aromatic-sulphur interactions 5.3A
+                Aromatic-sulphur interactions (<= 5.3A)
  Position  Residue    Chain    Position  Residue    Chain    Distance 
 
 
-                       Cation-pi interactions 6A
+                       Cation-pi interactions (<= 6A)
  Position  Residue    Chain    Position  Residue    Chain    Distance 
     40       PHE        A        101       ARG        A        3.63   
     42       TYR        A        101       ARG        A        5.94   
@@ -73,7 +81,7 @@ Results of the interactions calculation:
    296       TYR        A        262       LYS        A        5.41   
 
 
-                     Hydrophobic interactions 5A
+                     Hydrophobic interactions (<= 5A)
  Position  Residue    Chain    Position  Residue    Chain    Distance 
     1        ILE        A         29       TYR        A        4.79   
     1        ILE        A         54       LEU        A        4.39   
@@ -310,7 +318,7 @@ Results of the interactions calculation:
    313       VAL        A        315       VAL        A        4.20   
 
 
-                     Hydrogen bonds main-main 3.5/4A
+                     Hydrogen bonds main-main (<= 3.5/4A)
  Position  Residue    Chain      Atom    Position  Residue    Chain      Atom    Distance 
     4        THR        A         N         24       TYR        A         O        2.95   
     6        THR        A         N         4        THR        A         O        3.43   
@@ -692,7 +700,7 @@ Results of the interactions calculation:
    316       LYS        A         N        314       GLY        A         O        3.43   
 
 
-                     Hydrogen bonds main-side 3.5/4A
+                     Hydrogen bonds main-side (<= 3.5/4A)
  Position  Residue    Chain      Atom    Position  Residue    Chain      Atom    Distance 
     31       GLN        A        NE2        1        ILE        A         O        3.38   
     25       SER        A         OG        2        THR        A         O        3.12   
@@ -778,7 +786,7 @@ Results of the interactions calculation:
    308       GLN        A        NE2       304       ALA        A         O        2.73   
 
 
-                     Hydrogen bonds side-side 3.5/4A
+                     Hydrogen bonds side-side (<= 3.5/4A)
  Position  Residue    Chain      Atom    Position  Residue    Chain      Atom    Distance 
     5        SER        A         OG        33       ASN        A        OD1       3.25   
     6        THR        A        OG1        22       THR        A        OG1       3.47   

@@ -7,7 +7,7 @@ Based on the article : Tina, K. G., Bhadra, R., & Srinivasan, N. (2007).
 		       PIC: Protein Interactions Calculator. Nucleic
                        Acids Research, 35(Web Server), W473–W476.
 
-Python version : Python 3.7.4
+Python version : Python 3.7
 Packages used :
 - sys
 - math
