@@ -1,31 +1,31 @@
-Results of the intra-protein interaction calculation:
+Results of the interactions calculation:
 
 
-                           Ionic interactions 6A
+                           Ionic interactions (<= 6A)
  Position  Residue    Chain    Position  Residue    Chain    Distance 
     8        ARG        A         14       ASP        A        4.98   
 
 
-                           Disulphide bridges 2.2A
+                           Disulphide bridges (<= 2.2A)
  Position  Residue    Chain    Position  Residue    Chain    Distance 
     2        CYS        A         19       CYS        A        2.04   
     9        CYS        A         21       CYS        A        2.04   
     15       CYS        A         27       CYS        A        2.04   
 
 
-               Aromatic-aromatic interactions 4.5-7A
+               Aromatic-aromatic interactions (between 4.5-7A)
  Position  Residue    Chain    Position  Residue    Chain    Distance 
 
 
-                Aromatic-sulphur interactions 5.3A
+                Aromatic-sulphur interactions (<= 5.3A)
  Position  Residue    Chain    Position  Residue    Chain    Distance 
 
 
-                       Cation-pi interactions 6A
+                       Cation-pi interactions (<= 6A)
  Position  Residue    Chain    Position  Residue    Chain    Distance 
 
 
-                     Hydrophobic interactions 5A
+                     Hydrophobic interactions (<= 5A)
  Position  Residue    Chain    Position  Residue    Chain    Distance 
     5        ILE        A         26       PHE        A        4.25   
     6        LEU        A         7        MET        A        4.98   
@@ -33,7 +33,7 @@ Results of the intra-protein interaction calculation:
     23       PRO        A         26       PHE        A        4.91   
 
 
-                     Hydrogen bonds main-main 3.5/4A
+                     Hydrogen bonds main-main (<= 3.5/4A)
  Position  Residue    Chain      Atom    Position  Residue    Chain      Atom    Distance 
     6        LEU        A         N         4        ARG        A         O        3.17   
     27       CYS        A         N         7        MET        A         O        3.29   
@@ -48,7 +48,7 @@ Results of the intra-protein interaction calculation:
     25       GLY        A         N         23       PRO        A         O        2.94   
 
 
-                     Hydrogen bonds main-side 3.5/4A
+                     Hydrogen bonds main-side (<= 3.5/4A)
  Position  Residue    Chain      Atom    Position  Residue    Chain      Atom    Distance 
     19       CYS        A         SG        2        CYS        A         O        3.30   
     2        CYS        A         SG        18       GLY        A         O        3.19   
@@ -61,6 +61,6 @@ Results of the intra-protein interaction calculation:
     27       CYS        A         SG        20       VAL        A         O        3.49   
 
 
-                     Hydrogen bonds side-side 3.5/4A
+                     Hydrogen bonds side-side (<= 3.5/4A)
  Position  Residue    Chain      Atom    Position  Residue    Chain      Atom    Distance 
     8        ARG        A        NH2        14       ASP        A        OD1       2.81   

@@ -26,6 +26,7 @@ def check_command(argv):
         return 3
     if argv[2] not in ["--intra", "--inter"]:
         return 4
+    return 0
 
 
 def set_val_default(arg_input, arg_name, def_range):
@@ -38,7 +39,6 @@ def set_val_default(arg_input, arg_name, def_range):
     :param def_range: default value used by the interaction calculation
     :return: a threshold distance or -1 if there is an error in the number send by the user
     """
-    range = def_range
     if len(arg_input) > len(arg_name):
         if arg_name == "--arar":
             # two distance threshold values to make an interval
@@ -47,23 +47,23 @@ def set_val_default(arg_input, arg_name, def_range):
                 val1 = arg_input[len(arg_name):].split("/")[0]
                 val2 = arg_input[len(arg_name):].split("/")[1]
                 if val1 >= val2:
-                    range = -1
+                    def_range = -1
                     print("The values with the argument", arg_name,
                           "are invalid, please leave a positive gap between the two values")
                 else:
-                    range = (float(val1), float(val2))
+                    def_range = (float(val1), float(val2))
             except ValueError:
                 print("The values with the argument", arg_name, "are invalid")
-                range = -1
+                def_range = -1
         else:
             # only one threshold value needed
             try:
                 # check if the value with the arg is a number and not a letter or a symbol
-                range = float(arg_input[len(arg_name):])
+                def_range = float(arg_input[len(arg_name):])
             except ValueError:
                 print("The value with the argument", arg_name, "is invalid")
-                range = -1
-    return range
+                def_range = -1
+    return def_range
 
 
 def check_help(argv):
@@ -107,3 +107,4 @@ def check_help(argv):
               "> python3 cip.py ../data/1atn.pdb --intra --inic6.5 --disu --arar4/6.5 --arsu5.5 "
               "--capi7 --hphb4.5 --mmhb --mshb --sshb\n\n")
         return True
+    return False

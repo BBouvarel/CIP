@@ -22,14 +22,14 @@ class Atom:
     :param y: coordinate y of the atom
     :param z: coordinate z of the atom
     """
-    def __init__(self, name, position, residue, chain, x, y, z):
+    def __init__(self, name, position, residue, chain, coor_x, coor_y, coor_z):
         self.name = name
         self.position = int(position)
         self.residue = residue
         self.chain = chain
-        self.x = float(x)
-        self.y = float(y)
-        self.z = float(z)
+        self.coor_x = float(coor_x)
+        self.coor_y = float(coor_y)
+        self.coor_z = float(coor_z)
 
     def check_non_id(self, ato2):
         """
@@ -40,8 +40,7 @@ class Atom:
         """
         if self.position != ato2.position or self.chain != ato2.chain:
             return True
-        else:
-            return False
+        return False
 
     def check_non_id_hbond_side(self, ato2):
         """
@@ -53,5 +52,4 @@ class Atom:
         """
         if self.position != ato2.position or self.chain != ato2.chain or self.name != ato2.name:
             return True
-        else:
-            return False
+        return False

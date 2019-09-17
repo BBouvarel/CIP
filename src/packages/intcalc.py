@@ -63,7 +63,9 @@ def calc_range(elem1, elem2):
     :param elem2: object of the class atom
     :return: distance between two atoms
     """
-    dist = math.sqrt((elem2.x-elem1.x)**2 + (elem2.y-elem1.y)**2 + (elem2.z-elem1.z)**2)
+    dist = math.sqrt((elem2.coor_x-elem1.coor_x)**2 +
+                     (elem2.coor_y-elem1.coor_y)**2 +
+                     (elem2.coor_z-elem1.coor_z)**2)
     return dist
 
 
@@ -75,12 +77,12 @@ def calc_centroid(atoms):
     :return: an object containing the information about the phenyl and his centroid
     """
     return atom.Atom("Phenyl", atoms[0].position, atoms[0].residue, atoms[0].chain,
-                     stat.mean([atoms[0].x, atoms[1].x, atoms[2].x,
-                                atoms[3].x, atoms[4].x, atoms[5].x]),
-                     stat.mean([atoms[0].y, atoms[1].y, atoms[2].y,
-                                atoms[3].y, atoms[4].y, atoms[5].y]),
-                     stat.mean([atoms[0].z, atoms[1].z, atoms[2].z,
-                                atoms[3].z, atoms[4].z, atoms[5].z]))
+                     stat.mean([atoms[0].coor_x, atoms[1].coor_x, atoms[2].coor_x,
+                                atoms[3].coor_x, atoms[4].coor_x, atoms[5].coor_x]),
+                     stat.mean([atoms[0].coor_y, atoms[1].coor_y, atoms[2].coor_y,
+                                atoms[3].coor_y, atoms[4].coor_y, atoms[5].coor_y]),
+                     stat.mean([atoms[0].coor_z, atoms[1].coor_z, atoms[2].coor_z,
+                                atoms[3].coor_z, atoms[4].coor_z, atoms[5].coor_z]))
 
 
 def check_criteria(intra_inter, elem1, elem2, pos_prev, dist, def_range):
@@ -142,7 +144,8 @@ def ionic(arg, def_range):
     :param def_range: the threshold distance, criterion of the interaction
     """
     print_header(arg[1][-8:-4], "Ionic interactions", def_range)
-    inic = parsing(arg[1], ["ND1", "NE", "NH1", "NH2", "NZ", "NE2", "OD2", "OE2"], ["ARG", "LYS", "HIS", "ASP", "GLU"])
+    inic = parsing(arg[1], ["ND1", "NE", "NH1", "NH2", "NZ", "NE2", "OD2", "OE2"],
+                   ["ARG", "LYS", "HIS", "ASP", "GLU"])
     # NE and NH1 because of the displacement of the electron in the guanidium group of the arginine
     pos_prev = []
     pos_res = ["ARG", "LYS", "HIS"]
@@ -440,11 +443,11 @@ def print_header(pdb_name, title, range):
     with open("../results/"+pdb_name+"_res.txt", "a") as fout:
         # write in the result file
         if title == "Aromatic-aromatic interactions":
-            print("\n\n{:>45} {}-{}A".format(title, range[0], range[1]))
-            fout.write("\n\n\n{:>45} {}-{}A".format(title, range[0], range[1]))
+            print("\n\n{:>45} (between {}-{}A)".format(title, range[0], range[1]))
+            fout.write("\n\n\n{:>45} (between {}-{}A)".format(title, range[0], range[1]))
         else:
-            print("\n\n{:>45} {}A".format(title, range))
-            fout.write("\n\n\n{:>45} {}A".format(title, range))
+            print("\n\n{:>45} (<= {}A)".format(title, range))
+            fout.write("\n\n\n{:>45} (<= {}A)".format(title, range))
         print("{:^10}{:^10}{:^10}{:^10}{:^10}{:^10}{:^10}".format("Position",
                                                                   "Residue", "Chain",
                                                                   "Position", "Residue",
@@ -480,8 +483,8 @@ def print_hydrogen_header(pdb_name, title, range):
     """
     with open("../results/"+pdb_name+"_res.txt", "a") as fout:
         # write in the result file
-        print("\n\n{:>45} {}/{}A".format(title, range[0], range[1]))
-        fout.write("\n\n\n{:>45} {}/{}A".format(title, range[0], range[1]))
+        print("\n\n{:>45} (<= {}/{}A)".format(title, range[0], range[1]))
+        fout.write("\n\n\n{:>45} (<= {}/{}A)".format(title, range[0], range[1]))
         print("{:^10}{:^10}{:^10}{:^10}{:^10}"
               "{:^10}{:^10}{:^10}{:^10}".format("Position", "Residue", "Chain",
                                                 "Atom", "Position", "Residue", "Chain",
