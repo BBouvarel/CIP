@@ -2,11 +2,12 @@
 Author : Bertrand Bouvarel
 Promotion : M2BI 2019-2020
 last update: september 2019
-Python version : Python 3.7.4
+Report available in the doc-report folder
 Based on the article : Tina, K. G., Bhadra, R., & Srinivasan, N. (2007). 
 		       PIC: Protein Interactions Calculator. Nucleic
                        Acids Research, 35(Web Server), W473–W476.
 
+Python version : Python 3.7.4
 Packages used :
 - sys
 - math

@@ -23,16 +23,18 @@ if __name__ == "__main__":
     if cl.check_help(sys.argv):
         # check if the help is called
         sys.exit()
-    # check for potential errors in the command line
     if cl.check_command(sys.argv) == 1:
-        sys.exit("A pdb file or arguments are missing, type --help to access the program help")
+        sys.exit("A pdb file or arguments are missing, type > python3 cip.py --help < to access "
+                 "the program help")
     elif cl.check_command(sys.argv) == 2:
-        sys.exit("A pdb file is needed, type --help to access the program help")
+        sys.exit("A pdb file is needed, type > python3 cip.py --help < to access the program help")
     elif cl.check_command(sys.argv) == 3:
-        sys.exit("No interactions calculation are given, type --help to access the program help")
+        sys.exit("No interactions calculation are given, type > python3 cip.py --help < to access "
+                 "the program help")
     elif cl.check_command(sys.argv) == 4:
-        sys.exit("A choice between intra or inter protein calculation is needed,"
-                 "type --help to access the program help")
+        sys.exit("A choice between intra or inter protein calculation is needed, "
+                 "type > python3 cip.py --help < to access the program help")
+    # check for potential errors in the command line
 
     with open("../results/"+sys.argv[1][-8:-4]+"_res.txt", "w") as fout:
         fout.write("Results of the interactions calculation:")
@@ -87,4 +89,4 @@ if __name__ == "__main__":
 
         else:
             sys.exit("One of the arguments is not recognized by the program, "
-                     "type --help to access the program help")
+                     "type > python3 cip.py --help < to access the program help")
