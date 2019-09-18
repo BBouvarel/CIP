@@ -1,6 +1,7 @@
 ========== CREATION OF AN INTERACTION CALCULATION PROGRAM ==========
 Author : Bertrand Bouvarel
 Promotion : M2BI 2019-2020
+DOI: 10.5281/zenodo.3442202 
 last update: september 2019
 Report available in the doc-report folder
 Based on the article : Tina, K. G., Bhadra, R., & Srinivasan, N. (2007). 
