@@ -1,3 +1,13 @@
+Au Etudiants en Master 2 de Bioinformatique: 
+Bonjour, il est possible que vous, étudiant ayant pour projet de recoder le site protein interactions calculator, tombiez sur ce dépôt git (les sujet sont redondants d'une année à l'autre). Sachez que ce projet a été réalisé dans ce même objectif et dans le même contexte. J'ai décidé de laissé ce dépôt publique car il est un bon exemple de ce qu'il m'a été possible de concevoir en quelques jours seulement. Connaissant votre situation, je me doute que vous puissiez avoir envie de vous... inspirer de ce projet ;) . De ce fait, j'aimerais vous citer un petit passage de l'article L122-4 du code de la propriété intellectuelle : "toute représentation ou reproduction intégrale ou parielle faite sans le consentement de l'auteur ou de ses ayants droit ou ayants cause est illicite. Il en est de même pour la traduction, l'adaptation ou la transformation, l'arrangement ou la reproduction par un art ou un procédé quelconque."
+Voila, à vous de voir si cela vaut le coup, en revanche, rien ne vous empeche de télécharger le script afin de comparer vos résultats (tips : il est possible / "normal" que vous ayez des sorties différentes du site, ayez un esprit critique).
+Bon courage pour la réalisation de votre projet, et pour le reste du master, vous allez en avoir besoin !
+
+P.S : venez au jebif, c'est sympa !
+
+Bertrand Bouvarel, ancien M2BI, passionné d'analyse de données et de R
+
+
 ========== CREATION OF AN INTERACTION CALCULATION PROGRAM ==========
 Author : Bertrand Bouvarel
 Promotion : M2BI 2019-2020
@@ -57,14 +67,3 @@ the default values of distance, use the command:
 >>>>> python3 cip.py ../data/2c35.pdb --intra --inic6.5 --disu --arar4/6.5 --arsu5.5 --capi7 --hphb4.5 --mmhb --mshb --sshb <<<<<
 
 >>>>> python3 cip.py ../data/2eti.pdb --intra --disu <<<<<
-
-
-Au Etudiants en Master 2 de Bioinformatique: 
-Bonjour, il est possible que vous, étudiant ayant pour projet de recoder le site protein interactions calculator, tombiez sur ce dépôt git (les sujet sont redondants d'une année à l'autre). Sachez que ce projet a été réalisé dans ce même objectif et dans le même contexte. J'ai décidé de laissé ce dépôt publique car il est un bon exemple de ce qu'il m'a été possible de concevoir en quelques jours seulement. Connaissant votre situation, je me doute que vous puissiez avoir envie de vous... inspirer de ce projet ;) . De ce fait, j'aimerais vous citer un petit passage de l'article L122-4 du code de la propriété intellectuelle : "toute représentation ou reproduction intégrale ou parielle faite sans le consentement de l'auteur ou de ses ayants droit ou ayants cause est illicite. Il en est de même pour la traduction, l'adaptation ou la transformation, l'arrangement ou la reproduction par un art ou un procédé quelconque."
-Voila, à vous de voir si cela vaut le coup, en revanche, rien ne vous empeche de télécharger le script afin de comparer vos résultats (tips : il est possible / "normal" que vous ayez des sorties différentes du site, ayez un esprit critique).
-Bon courage pour la réalisation de votre projet, et pour le reste du master, vous allez en avoir besoin !
-
-P.S : venez au jebif, c'est sympa !
-
-Bertrand Bouvarel, ancien M2BI, passionné d'analyse de données et de R
-
